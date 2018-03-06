@@ -29,6 +29,7 @@ in the `config/bundles.php` file of your project:
 return [
     Geekco\CmsBundle\GeekcoCmsBundle::class => ['all' => true],
 ];
+```
 
 ### Step 3: Import routes
 
@@ -37,6 +38,7 @@ return [
 geekco_cms_bundle:
     resource: '@GeekcoCmsBundle/Controller/'
     type: annotation
+```
 
 ### Step 3: Load the entities
 
@@ -52,6 +54,7 @@ doctrine:
                 dir: '%kernel.project_dir%/vendor/geekco/cmsbundle/src/Entity'
                 prefix: 'Geekco\CmsBundle\Entity'
                 alias: Geekco_Cms
+```
 
 ### Step 4: Load the services
 
@@ -65,3 +68,4 @@ services:
     Geekco\CmsBundle\Controller\:
         resource: '../vendor/geekco/cmsbundle/src/Controller'
         tags: ['controller.service_arguments']
+```
