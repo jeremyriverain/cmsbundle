@@ -42,12 +42,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Geekco\\CmsBundle\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Geekco\\CmsBundle\\Tests\\": "tests/"
+            "Geekco\\CmsBundle\\": "src"
         }
     }
 }

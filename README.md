@@ -9,5 +9,5 @@ Installation (Symfony Flex required)
 Open a command console, enter your project directory and execute:
 
 ```console
-$ composer require geekco/cmsbundle
+$ composer require geekco/cmsbundle:dev-master
 ```
