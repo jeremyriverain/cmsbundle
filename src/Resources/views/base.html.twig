@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html class="" lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		{% block stylesheets %} 
+
+			<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+			<link rel="stylesheet" href="{{asset('build/admin.css')}}">
+		{% endblock %}
+
+		<link rel="apple-touch-icon" sizes="180x180" href="{{asset('/bundles/cms/apple-touch-icon.png')}}">
+		<link rel="icon" type="image/png" sizes="32x32" href="{{asset('/bundles/cms/favicon-32x32.png')}}">
+		<link rel="icon" type="image/png" sizes="16x16" href="{{asset('/bundles/cms/favicon-16x16.png')}}">
+		<link rel="manifest" href="{{asset('/bundles/cms/site.webmanifest')}}">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#ffffff">
+
+		<title>Espace admin</title>
+
+	</head>
+
+	<body>
+
+
+		{% block main %}
+
+			<main id="admin">
+
+			{% block menu %}
+				{{include('@geekco_cms/menu.html.twig')}}
+			{% endblock %}
+
+			{% block flash %}                
+				{{include("@geekco_cms/flash.html.twig")}}
+			{% endblock %}
+
+			{% block body %}
+
+			{% endblock %}
+
+			</main>
+
+		{% endblock %}
+
+
+        {% block javascripts %}
+
+		<script src="{{asset('build/admin.js')}}"></script>
+          
+        {% endblock %}
+
+	</body>
+</html>

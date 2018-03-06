@@ -1,0 +1,36 @@
+{% extends "@geekco_cms/base.html.twig" %}
+
+{% import "@geekco_cms/macros.html.twig" as macros %}
+
+{% form_theme form '@geekco_cms/form.html.twig' %}
+
+{% block body %}
+
+    <div class="container pb-2">
+
+        <h1 class=" center-align">Nouvel administrateur</h1>
+
+        {{form_start(form)}}
+
+        <div class="input-field">
+            {{form_row(form.username)}}
+        </div>
+
+        <div class="input-field">
+            {{form_row(form.email)}}
+        </div>
+
+        <div class="input-field">
+            {{form_row(form.plainPassword.first)}}
+        </div>
+
+        <div class="input-field">
+            {{form_row(form.plainPassword.second)}}
+        </div>
+
+        {{macros.submit_button()}}
+
+        {{form_end(form)}}
+
+    </div>
+{% endblock %}

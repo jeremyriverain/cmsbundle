@@ -1,0 +1,22 @@
+{% set flashesMessages = {} %}
+
+{% if app.request.hasPreviousSession %}
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+            {% set flashesMessages = flashesMessages|merge([{'class': type, 'message': message}]) %}
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+
+{% if flashesMessages is not empty %}
+    <!-- Modal Structure -->
+    <div class="mt-1" id="flash-msg">
+        <div class="d-f fld-c ai-c jc-c">
+                {% for f in flashesMessages %}
+                    <div class="">
+                        <div class="flash center-align card-panel {{f.class}}">{{f.message|raw}}</div>
+                    </div>
+                {% endfor %}
+        </div>
+    </div>
+{% endif %}

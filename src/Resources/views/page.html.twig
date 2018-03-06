@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{page.name != 'accueil' ? page.name|capitalize ~ " -"}} {{parent()}}
+{% endblock %}
+
+{% block body %}
+    {% if form is defined %}
+        {% for m in page.modules  %}
+            {% if form.vars.valid == false %}
+                {% if m.hasForm == true %}
+                    {{include(m.pathThemeRelative)}}
+                {% endif %}
+            {% else %}
+                {{include(m.pathThemeRelative)}}
+            {% endif %}    
+
+        {% endfor %}
+    {% else %}
+
+        {% for m in page.modules  %}
+            {{include(m.pathThemeRelative)}}
+        {% endfor %}
+
+    {% endif %}
+
+{% endblock %}

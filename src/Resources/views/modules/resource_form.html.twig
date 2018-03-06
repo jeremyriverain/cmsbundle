@@ -1,0 +1,83 @@
+{% import "@geekco_cms/macros.html.twig" as macros %}
+{% if form.resource.stringResources is defined %}
+    {% for f in form.resource.stringResources  %}
+        <div class="input-field">
+            {{form_row(f)}}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if form.resource.textResources is defined %}
+    {% for f in form.resource.textResources  %}
+        <div class="input-field"> 
+            {{form_row(f)}}
+        </div>
+    {% endfor %}
+    <br>
+    
+{% endif %}
+
+{% if form.resource.pageResources is defined %}
+    {% for f in form.resource.pageResources  %}
+        <div class="input-field"> 
+            {{form_row(f)}}
+        </div>
+    {% endfor %}
+    <br>
+    
+{% endif %}
+
+{% if form.resource.colorResources is defined %}
+    {% for f in form.resource.colorResources  %}
+        <div class="input-field"> 
+            {{form_row(f)}}
+        </div>
+    {% endfor %}
+    <br>
+    
+{% endif %}
+
+{% if form.resource.imageResources is defined %}
+    {% if configuration['imageResources']['add'] == true %}
+        {% set prototype = form_row(form.resource.imageResources.vars.prototype)%}
+    {% else %}
+        {% set prototype = null %}
+    {% endif %}
+    <div class="collection-container" id="collection-container-{{form.vars.id}}" data-collection-deletable={{configuration['imageResources']['delete'] == false ? 'false': 'true'}} data-max="1" data-prototype='{{prototype}}' data-add-label="image">
+        {% for f in form.resource.imageResources  %}
+            {% if loop.index0 is even %}
+                <div class='item-collection grey lighten-3 p-1' id="{{f.vars.id}}">
+            {% else %}
+                <div class='item-collection p-1' id="{{f.vars.id}}">
+            {% endif %}
+            {{form_row(f)}}
+
+            {% if f.vars.value.image is not null %}
+                <img src="{{asset("cms/uploads/" ~ f.vars.value.image)}}" alt="" >
+            {% endif %}
+
+                </div>
+        {% endfor %}
+        {% if configuration['imageResources']['add'] == true %}
+            {{macros.add_collection_button("image")}}
+        {% endif %}
+                </div>
+{% endif %}
+
+{% if form.resource.booleanResources is defined %}
+    {% for f in form.resource.booleanResources  %}
+        <p>
+        {{form_row(f)}}
+        </p>
+    {% endfor %}
+{% endif %}
+
+{% if form.resource.integerResources is defined %}
+    {% for f in form.resource.integerResources %}
+        <div class="input-field">
+            {{form_row(f)}}
+        </div>
+    {% endfor %}
+{% endif %}
+
+

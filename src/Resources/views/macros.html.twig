@@ -1,0 +1,77 @@
+{% macro delete_icon(namespace, id, legend) %}
+<a href="#" data-namespace="{{namespace}}" data-id="{{id}}" data-url="{{path('admin_ajax_delete')}}" 
+                                                            {% if legend is not null %}
+                                                                data-tooltip="{{legend}}"
+                                                                data-delay="50"
+                                                                class="mr-1 tooltipped delete-action"
+                                                            {% else%}
+                                                                class="delete-action"
+                                                            {% endif%}
+                                                                ><i class="material-icons red-text text-darken-2">delete</i></a>
+{% endmacro %}
+
+{% macro edit_icon(path, legend) %}
+<a href="{{path}}" 
+   {% if legend is not null %}
+       data-position="bottom" data-delay="50" data-tooltip="{{legend}}" class="tooltipped"
+   {% endif %}
+                                                                        ><i class="material-icons amber-text">edit</i></a>
+{% endmacro %}
+
+{% macro new_icon(path, legend) %}
+<a href="{{path}}" 
+   {% if legend is not null %}
+       data-position="bottom" data-delay="50" data-tooltip="{{legend}}" class="tooltipped mt-1 btn-floating waves-effect waves-light light-green accent-2 right "
+   {% else%}
+       class=" mt-1 btn-floating waves-effect waves-light light-green accent-2 right "
+   {% endif %}
+       ><i class="material-icons grey-text text-darken-3">playlist_add</i></a>
+{% endmacro %}
+
+{% macro switch_field(initialValue, namespaceParent, id, method) %}
+<div class="switch">
+    <label>
+        Non
+        <input type="checkbox" class="switch-action" {{initialValue == true ? "checked"}} data-namespaceParent="{{namespaceParent}}" data-id="{{id}}" data-method="{{method}}" data-url="{{path('admin_ajax_switch')}}">
+        <span class="lever"></span>
+        Oui
+    </label>
+</div>
+{% endmacro %}
+
+
+{% macro submit_button() %}
+<div class="input-field">
+    <button class="btn waves-effect waves-light" type="submit" name="action">
+        <i class="material-icons left">check</i> Valider
+    </button>
+</div>
+{% endmacro %}
+
+{% macro filter_link(filterResponse, route, property) %}
+{% if filterResponse.success == true and filterResponse.orderby == property %}
+    <a href="{{path(route, {'orderby': property, 'direction': filterResponse.reverse_direction})}}" class=" filter-action active"><i class="material-icons link-color">swap_vert</i></a> 
+{% else %}
+    <a href="{{path(route, {'orderby': property, 'direction': 'ASC'})}}" class=" filter-action"><i class="material-icons link-color">swap_vert</i></a> 
+{% endif %}
+{% endmacro %}
+
+{% macro add_collection_button(label) %}
+<div class="mt-1 collection-action add">
+    <a class="light-green accent-2 waves-effect waves-light btn grey-text text-darken-3"><i class="material-icons left grey-text text-darken-3">playlist_add</i>{{label}}</a>
+</div>
+{% endmacro%}
+
+{% macro property_updater(namespace, id, method, value) %}
+<form action="{{path('admin_ajax_propertyupdater')}}" method="POST">
+        <input class="updatable-item" type="text" value="{{value}}" class="grey lighten-4" style="max-width:200px" data-namespace={{namespace}} data-id={{id}} data-method={{method}}>
+    </form>
+{% endmacro %}
+
+{% macro header_seo(is_loop_first, text, class, fallback_tag, style) %}
+{% if is_loop_first == true and text is not null %}
+    <h1 class="{{class|default('')}}" {{style is not empty ? 'style=' ~style}}>{{text}}</h1>
+{% elseif text is not null %}
+    <{{fallback_tag|default('h2')}} class="{{class|default('')}}" {{style is not empty ? 'style=' ~style}}>{{text}}</{{fallback_tag|default('h2')}}>
+{% endif %}
+{% endmacro %}
