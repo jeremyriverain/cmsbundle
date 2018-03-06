@@ -1,0 +1,53 @@
+{% extends "@geekco_cms/base.html.twig" %}
+
+{% set module = app.request.attributes.get('module') %}
+
+{% block flash %} 
+{% endblock %}
+
+{% block body %}
+    {% set page = module.page  %}
+
+
+    {% if page is not null %}
+        <nav class="breadcrumb-nav">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <a href="{{path('admin_page_list')}}" class="breadcrumb">Liste des pages</a>
+                    <a href="{{path('admin_page_update', {'id': page.id})}}" class="breadcrumb">Page {{page.name|capitalize}}</a>
+                    <a href="#!" class="breadcrumb hide-on-small-only">Module {{module.label}}</a>
+                </div>
+            </div>
+        </nav>
+
+    {% endif %}
+
+    {{include("@geekco_cms/flash.html.twig")}}
+
+    <div class="container" id="update_module">
+        <div class="row">
+
+            <div class="col s12">
+
+                <h1>{{module.label|capitalize}}</h1>
+                {% if module.description is not null %}
+                    <p class="card-panel "><i class="material-icons">info</i> {{module.description}}</p>
+                {% endif%}
+
+                {% include ('@geekco_cms/modules/form.html.twig') with {'module': module}%}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{#{% block javascripts %}#}
+
+{#{{parent()}}#}
+{#{% if module.hasCkeditorResource == true %}#}
+{#<script src="{{asset('build/ckeditor.js')}}"></script>#}
+{#{% endif %}#}
+
+{#{% endblock %}#}
+

@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+// Colors
+@import "~materialize-css/sass/components/color";
+
+// Variables;
+
+@import "variables";
+@import "~materialize-css/sass/components/variables";
+
+// Reset
+@import "~materialize-css/sass/components/normalize";
+
+// ~materialize-css/sass/components
+@import "~materialize-css/sass/components/global";
+@import "~materialize-css/sass/components/badges";
+@import "~materialize-css/sass/components/icons-material-design";
+@import "~materialize-css/sass/components/grid";
+@import "~materialize-css/sass/components/navbar";
+@import "~materialize-css/sass/components/roboto";
+@import "~materialize-css/sass/components/typography";
+@import "~materialize-css/sass/components/transitions";
+@import "~materialize-css/sass/components/cards";
+//@import "~materialize-css/sass/components/toast";
+@import "~materialize-css/sass/components/tabs";
+@import "~materialize-css/sass/components/tooltip";
+@import "~materialize-css/sass/components/buttons";
+@import "~materialize-css/sass/components/dropdown";
+@import "~materialize-css/sass/components/waves";
+//@import "~materialize-css/sass/components/modal";
+//@import "~materialize-css/sass/components/collapsible";
+@import "~materialize-css/sass/components/chips";
+//@import "~materialize-css/sass/components/materialbox";
+@import "~materialize-css/sass/components/forms/forms";
+@import "~materialize-css/sass/components/table_of_contents";
+@import "~materialize-css/sass/components/sideNav";
+@import "~materialize-css/sass/components/preloader";
+@import "~materialize-css/sass/components/slider";
+//@import "~materialize-css/sass/components/carousel";
+@import "~materialize-css/sass/components/tapTarget";
+@import "~materialize-css/sass/components/pulse";
+@import "~materialize-css/sass/components/date_picker/default";
+@import "~materialize-css/sass/components/date_picker/default.date";
+@import "~materialize-css/sass/components/date_picker/default.time";
+
+@import url('~ck5-custom-build/build/styles.css');
+
+@import "breadcrumb";
+@import "colorpicker";
+@import "chips";
+@import "ckeditor";
+@import "flash";
+@import "layout";
+@import "nav";
+@import "typography";
+
+#update_module {
+    .form-container{ 
+        .sub-module:nth-child(even) {
+            border-left: 10px solid color('grey', 'lighten-2');
+        }
+
+        .sub-module:nth-child(odd) {
+            border-right: 10px solid color('grey', 'lighten-2');
+        }
+    }
+}
+
+form .collection-container img {
+max-width: 200px;
+display: block;
+margin-top: $gutter-width;
+}
+
+.chips-placeholder {
+max-width: 200px;
+}

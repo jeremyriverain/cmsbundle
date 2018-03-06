@@ -1,0 +1,10 @@
+.flash {
+    margin: 0 auto;
+    max-width: 600px;
+    &.success {
+        background: $success-color;
+    }
+    &.error {
+        background: $error-color;
+    }
+}

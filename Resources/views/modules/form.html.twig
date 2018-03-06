@@ -1,0 +1,45 @@
+{% import "@geekco_cms/macros.html.twig" as macros %}
+<div class="section form-container">
+    {{form_start(form, {'attr': {"id": 'form-update-module'}})}}
+
+    {% set configuration = module.resource is not null ? module.resource.configuration : null %}
+    {%include '@geekco_cms/modules/resource_form.html.twig' with {'configuration' : configuration, 'form': form}%}
+
+    {% if form.children is defined %}
+        <div class="children-module-container" data-positionable="{{module.areChildrenPositionable == true ? 'true': 'false'}}">
+
+            {% for current in form.children  %}
+
+                <div class=" section sub-module pl-1 pr-1 mb-2">
+                    <br> 
+                    {% set configuration = current.vars.value.resource.configuration  %}
+                    {%include '@geekco_cms/modules/resource_form.html.twig' with {'configuration' : configuration, 'form': current } only %}
+
+                    {% do current.setRendered %}
+                    <p class="{{loop.index0 is even ? 'right': 'left'}} d-f jc-c ai-c">
+                    <a  data-id="{{current.vars.value.id}}" data-url="{{path('admin_ajax_delete')}}" data-namespace="\Geekco\CmsBundle\Entity\Module" class=" delete-action waves-effect waves-light btn red lighten-1 white-text tooltipped" data-tooltip="Supprimer la section"><i class="material-icons left">delete</i>section</a>
+                    </p>
+                    <br>
+                </div>
+
+
+
+            {% endfor %}
+            {% if module.creatorAble == true %}
+                <br>
+                
+                <div class="mt-1">
+                    <a data-tooltip="ajouter 1 section" class="tooltipped waves-effect waves-light btn light-green accent-2 off-black-text" id="copy-child" data-name="{{form.vars.value.name}}" data-original="{{form.vars.value.id}}"><i class="material-icons left">playlist_add</i>section</a>
+                </div>
+            {% endif %}
+
+        </div>
+    {% endif %}
+
+      <div class="fixed-action-btn">
+      <button class="btn-floating btn-large waves-effect waves-light light-green accent-2" type="submit"><i class="black-text text-lighten-1 material-icons">check</i></button>
+      </div>
+
+    {{form_end(form)}}
+</div>
+

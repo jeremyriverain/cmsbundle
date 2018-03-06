@@ -1,0 +1,28 @@
+header, main, footer {
+    padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+    header, main, footer {
+        padding-left: 0;
+    }
+}
+
+nav ul a:hover {
+  background: color('grey', 'lighten-4');
+}
+
+#slide-out {
+    .user-view  {
+
+        svg {
+            width: 50px;
+            height: auto;
+        }
+        .email {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+

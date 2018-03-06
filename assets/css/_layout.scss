@@ -1,0 +1,60 @@
+.d-f {
+display: flex;
+}
+
+.ai-c {
+align-items: center;
+}
+
+.jc-c {
+justify-content: center;
+}
+
+.jc-spb {
+justify-content: space-between;
+}
+
+.fld-c {
+flex-direction: column;
+}
+
+$layout-paddings: 0, 1 !default;
+@each $p in $layout-paddings {
+    .p-#{$p} {
+        padding: $p#{'rem'};
+    }
+    .pl-#{$p} {
+        padding-left: $p#{'rem'};
+    }
+    .pr-#{$p} {
+        padding-right: $p#{'rem'};
+    }
+    .pb-#{$p} {
+
+        padding-bottom: $p#{'rem'};
+    }
+    .pt-#{$p} {
+        padding-top: $p#{'rem'};
+    }
+}
+
+$layout-margins: 0, 1 !default;
+@each $m in $layout-margins {
+    .m-#{$m} {
+        margin: $m#{'rem'};
+    }
+    .ml-#{$m} {
+        margin-left: $m#{'rem'};
+    }
+    .mr-#{$m} {
+        margin-right: $m#{'rem'};
+    }
+    .mb-#{$m} {
+
+        margin-bottom: $m#{'rem'};
+    }
+    .mt-#{$m} {
+        margin-top: $m#{'rem'};
+    }
+}
+

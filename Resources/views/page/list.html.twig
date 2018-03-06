@@ -1,0 +1,64 @@
+{% extends "@geekco_cms/base.html.twig" %}
+
+{% import "@geekco_cms/macros.html.twig" as macros %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+
+            <div class="hide-on-small-only pb-2">
+                {{ macros.new_icon(path('admin_page_new'), "ajouter 1 page") }}
+            </div>
+
+            <h1 class="center-align">Liste des pages</h1>
+
+
+            <table class="responsive-table" id="page-updatable">
+                <thead>
+                    <tr>
+                        <th class="">
+                            {{macros.filter_link(filterResponse, 'admin_page_list', 'name')}}
+                            Titre de la page
+                        </th>
+                        <th>
+                            URL</th>
+                        <th>Tags</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for e in pages %}					
+                        <tr>
+                            <td>
+                                <form class="" action="{{path('admin_page_update_title', {'id': e.id})}}" method="POST">
+                                    <input class="page-name" type="text" value="{{e.name}}" class="grey lighten-4" style="max-width:200px" {{e.slug == 'accueil' ? 'disabled'}}>
+                                </form>
+                            </td>
+                            <td>/{{e.slug}}</td>
+                            <td>
+                                <div class="chips-placeholder" id="chips-placeholder{{e.id}}" data-id="{{e.id}}" data-has-tags="{{e.tags|length > 0 ? 'true' : 'false'}}">
+                                
+                                </div>
+                            </td>
+                            <td> 
+
+                                <a href="{{path('admin_page_update', {'id': e.id})}}" data-delay="50" data-tooltip="modifier la structure de la page" class="mr-1 tooltipped"><i class="material-icons amber-text">edit</i></a>
+                                {% if e.slug != 'accueil' %}
+                                    {{ macros.delete_icon('Geekco\\CmsBundle\\Entity\\Page', e.id, "supprimer la page") }}
+                                {% endif %}
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+            {{ macros.new_icon(path('admin_page_new'), "ajouter 1 page") }}
+
+        </div>
+    </div>
+
+{% endblock %}
