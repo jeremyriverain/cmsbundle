@@ -40,7 +40,7 @@ geekco_cms_bundle:
     type: annotation
 ```
 
-### Step 3: Load the entities
+### Step 4: Load the entities
 
 ```yaml
 // config/packages/doctrine.yaml
@@ -56,7 +56,7 @@ doctrine:
                 alias: Geekco_Cms
 ```
 
-### Step 4: Load the services
+### Step 5: Load the services
 
 ```yaml
 // config/services.yaml
