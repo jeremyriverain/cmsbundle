@@ -133,6 +133,7 @@ security:
             security: false
         main:
             pattern:    ^/
+            user_checker: Geekco\CmsBundle\Security\UserChecker
             http_basic: ~
             provider: our_db_provider
             switch_user: ~
@@ -141,7 +142,7 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             form_login:
-                login_path: connexion
+                login_path: geekco_cms_connexion
                 check_path: connexion
                 csrf_token_generator: security.csrf.token_manager
 
