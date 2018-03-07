@@ -56,7 +56,15 @@ doctrine:
                 alias: Geekco_Cms
 ```
 
-### Step 5: Load the services
+### Step 5: change the locale
+
+``` yaml
+# config/parameters.yml
+parameters:
+    locale: 'fr'
+```
+
+### Step 6: Load the services
 
 ```yaml
 // config/services.yaml
@@ -99,7 +107,7 @@ services:
             $pathFixturesImg: "%kernel.project_dir%/src/DataFixtures/images/"
 ```
 
-### Step 6: Create the configuration file
+### Step 7: Create the configuration file
 
 ```yaml
 # config/packages/geekco_cms.yaml
@@ -108,11 +116,13 @@ geekco_cms:
     targetDir: '%kernel.project_dir%/public/cms/uploads'
 ```
 
-### Step 7: Update some configuration's symfony packages
+### Step 8: Update some configuration's symfony packages
 
 ```yaml
 # config/packages/framework.yaml
 framework:
+    # ...
+    csrf_protection: true
     assets:
         packages:
             geekco_cms:
@@ -160,7 +170,7 @@ security:
             # https://symfony.com/doc/current/security/form_login_setup.html
             form_login:
                 login_path: geekco_cms_connexion
-                check_path: connexion
+                check_path: geekco_cms_connexion
                 csrf_token_generator: security.csrf.token_manager
 
             logout:

@@ -69,7 +69,7 @@ class ResettingController extends Controller
             }
         }
 
-        return $this->render('resetting/request.html.twig', [
+        return $this->render('@geekco_cms/resetting/request.html.twig', [
             'form' => $form->createView()
         ]);
     }

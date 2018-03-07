@@ -1,13 +1,17 @@
 {% extends('@geekco_cms/base.html.twig') %}
 
 {% block menu %}
-    
+
 {% endblock %}
 
-{% block body %}
+
+{% block main %}
+
 
     <div class="section valign-wrapper">
         <div class="container">
+
+            <a href="{{path('geekco_cms_index')}}" class="valign-wrapper"><i class="material-icons mr-1">home</i> Retour en page d'accueil</a>
 
             <form action="{{ path('geekco_cms_connexion') }}" method="post">
                 <div class="row">
@@ -41,7 +45,7 @@
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
 
                     <div class="input-field col s12 m6 offset-m6 l4 offset-l4">
-                        <button class="btn waves-effect waves-light btn-large"  type="submit">Connexion</button>
+                        <button class="btn waves-effect waves-light"  type="submit">Connexion</button>
                     </div>
                 </div>
             </form>

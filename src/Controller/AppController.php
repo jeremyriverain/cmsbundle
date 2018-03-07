@@ -21,7 +21,7 @@ class AppController extends Controller
             $page = $em->getRepository(Page::class)->getPageWithModules('accueil');
             if (!$page)
             {
-                return new Response("La page d'accueil n'existe pas");
+                return new Response("Pseudo page d'accueil");
             }
         }
         else

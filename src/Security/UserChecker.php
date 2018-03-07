@@ -14,9 +14,9 @@ class UserChecker implements UserCheckerInterface
             return;
         }
 
-        if ($user->isDeleted()) {
-            throw new \Exception("ce membre est supprimé");
-        }
+        //if ($user->isDeleted()) {
+            //throw new \Exception("ce membre est supprimé");
+        //}
     }
 
     public function checkPostAuth(UserInterface $user)
@@ -26,7 +26,7 @@ class UserChecker implements UserCheckerInterface
         }
 
         // user account is expired, the user may be notified
-        if ($user->isActive()) {
+        if (!$user->getIsActive()) {
             throw new \Exception("ce membre n'est pas actif");
         }
     }
