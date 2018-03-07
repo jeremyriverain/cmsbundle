@@ -106,9 +106,26 @@ services:
 geekco_cms:
     targetDir_relative: 'cms/uploads'
     targetDir: '%kernel.project_dir%/public/cms/uploads'
+```
 
+### Step 7: Update some configuration's symfony packages
+
+```yaml
+# config/packages/framework.yaml
+framework:
+    assets:
+        packages:
+            geekco_cms:
+                base_path: /bundles/geekcocms/
+                json_manifest_path: '%kernel.project_dir%/public/bundles/geekcocms/build/manifest.json'
+```
+
+```yaml
+# config/packages/twig.yaml
 twig:
+    # ...
     paths:
+        '%kernel.project_dir%/templates': app
         '%kernel.project_dir%/vendor/geekco/cmsbundle/src/Resources/views': geekco_cms
 ```
 

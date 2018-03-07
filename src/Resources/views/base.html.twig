@@ -6,15 +6,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		{% block stylesheets %} 
-
 			<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-			<link rel="stylesheet" href="{{asset('build/admin.css')}}">
+			<link rel="stylesheet" href="{{asset('build/app.css', 'geekco_cms')}}">
 		{% endblock %}
 
-		<link rel="apple-touch-icon" sizes="180x180" href="{{asset('/bundles/cms/apple-touch-icon.png')}}">
-		<link rel="icon" type="image/png" sizes="32x32" href="{{asset('/bundles/cms/favicon-32x32.png')}}">
-		<link rel="icon" type="image/png" sizes="16x16" href="{{asset('/bundles/cms/favicon-16x16.png')}}">
-		<link rel="manifest" href="{{asset('/bundles/cms/site.webmanifest')}}">
+		<link rel="apple-touch-icon" sizes="180x180" href="{{asset('/bundles/geekcocms/apple-touch-icon.png')}}">
+		<link rel="icon" type="image/png" sizes="32x32" href="{{asset('/bundles/geekcocms/favicon-32x32.png')}}">
+		<link rel="icon" type="image/png" sizes="16x16" href="{{asset('/bundles/geekcocms/favicon-16x16.png')}}">
+		<link rel="manifest" href="{{asset('/bundles/geekcocms/site.webmanifest')}}">
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="theme-color" content="#ffffff">
 
@@ -48,7 +47,7 @@
 
         {% block javascripts %}
 
-		<script src="{{asset('build/admin.js')}}"></script>
+		<script src="{{asset('build/admin.js', 'geekco_cms')}}"></script>
           
         {% endblock %}
 
