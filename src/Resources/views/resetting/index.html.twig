@@ -1,0 +1,28 @@
+{#templates/resetting/index.html.twig#}
+{% extends('base.html.twig') %}
+{% block body %}
+
+    <div class="section valign-wrapper">
+        <div class="container">
+            {{form_start(form)}}
+            <div class="row">
+                <div class="col s12 m8 offset-m2 center-align">
+                    <h1 class="">Nouveau mot de passe</h1>
+                </div>
+
+                <div class="input-field col s12 m8 offset-m2 l6 offset-l3">
+                    {{form_row(form.plainPassword.first)}}
+                </div>
+
+                <div class="input-field col s12 m8 offset-m2 l6 offset-l3">
+                    {{form_row(form.plainPassword.second)}}
+
+                    <button class="btn waves-effect waves-light btn-large"  type="submit">Envoyer</button>
+                </div>
+
+
+                {{form_end(form)}}
+
+            </div>
+        </div>
+{% endblock %}

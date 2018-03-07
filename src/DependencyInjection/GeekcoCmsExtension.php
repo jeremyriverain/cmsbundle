@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\Config\FileLocator;
 
-class CmsExtension extends Extension
+class GeekcoCmsExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -18,10 +18,8 @@ class CmsExtension extends Extension
 
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter( 'cms.user_namespace', $config[ 'user_namespace' ]);
-        $container->setParameter( 'cms.userType_namespace', $config[ 'userType_namespace' ]);
-        $container->setParameter( 'cms.image_directory', $config[ 'image_directory' ]);
-        $container->setParameter( 'cms.image_directory_relative_path', $config[ 'image_directory_relative_path' ]);
+        $container->setParameter( 'geekco_cms.targetDir', $config[ 'targetDir' ]);
+        $container->setParameter( 'geekco_cms.targetDir_relative', $config[ 'targetDir_relative' ]);
 
     }
 }

@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Geekco\CmsBundle\Entity\Page;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class GeekcoController extends Controller
+class AppController extends Controller
 {
 
     private function renderAction(Request $request, $slug = null)
@@ -19,6 +19,10 @@ class GeekcoController extends Controller
         if($slug === null)
         {
             $page = $em->getRepository(Page::class)->getPageWithModules('accueil');
+            if (!$page)
+            {
+                return new Response("La page d'accueil n'existe pas");
+            }
         }
         else
         {

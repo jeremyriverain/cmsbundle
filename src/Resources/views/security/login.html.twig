@@ -1,0 +1,54 @@
+{% extends('@geekco_cms/base.html.twig') %}
+
+{% block menu %}
+    
+{% endblock %}
+
+{% block body %}
+
+    <div class="section valign-wrapper">
+        <div class="container">
+
+            <form action="{{ path('geekco_cms_connexion') }}" method="post">
+                <div class="row">
+
+                    <div class="col s12">
+                        <h1 class="section-title center-align">Connexion</h1>
+                    </div>
+
+                    {% if error %}
+                        <div class="col s12 center-align red-text text-darken-1 ">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+
+                    <div class="input-field col s12 m6 offset-m6 l4 offset-l4">
+                        <label for="username">E-mail ou identifiant</label>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+                    </div>
+
+                    <div class="input-field col s12 m6 offset-m6 l4 offset-l4">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" name="_password" />
+                        <a href="{{path('geekco_cms_resetting_request')}}">Mot de passe oublié ?</a>
+                    </div>
+
+                    {#
+                    If you want to control the URL the user
+                    is redirected to on success (more details below)
+                    #}
+                    <input type="hidden" name="_target_path" value="/admin" />
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+
+                    <div class="input-field col s12 m6 offset-m6 l4 offset-l4">
+                        <button class="btn waves-effect waves-light btn-large"  type="submit">Connexion</button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+
+    </div>
+{% endblock%}
+

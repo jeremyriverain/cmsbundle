@@ -10,14 +10,12 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('cms');
+        $rootNode = $treeBuilder->root('geekco_cms');
 
         $rootNode
             ->children()
-            ->scalarNode('user_namespace')->isRequired()->cannotBeEmpty()->end()
-            ->scalarNode('userType_namespace')->isRequired()->cannotBeEmpty()->end()
-            ->scalarNode('image_directory')->isRequired()->cannotBeEmpty()->end()
-            ->scalarNode('image_directory_relative_path')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('targetDir')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('targetDir_relative')->isRequired()->cannotBeEmpty()->end()
             ->end()
             ;
 

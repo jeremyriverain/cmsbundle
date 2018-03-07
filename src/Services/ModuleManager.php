@@ -22,13 +22,13 @@ class ModuleManager
 
     private $pathFixturesImg;
 
-    private $pathImg;
+    private $targetDir;
 
-    public function __construct(EntityManagerInterface $em, $pathFixturesImg, $pathImg)
+    public function __construct(EntityManagerInterface $em, $pathFixturesImg, $targetDir)
     {
         $this->em = $em;
         $this->pathFixturesImg = $pathFixturesImg;
-        $this->pathImg = $pathImg;
+        $this->targetDir = $targetDir;
     }
 
     public function copy(Module $module)
@@ -163,7 +163,7 @@ class ModuleManager
         $source = $this->pathFixturesImg.$i->getImage();
         if(file_exists($source)){
             $nameDestFile = uniqId().$i->getImage();
-            $destFile = $this->pathImg."/".$nameDestFile;
+            $destFile = $this->targetDir."/".$nameDestFile;
             if (!copy($source, $destFile)) {
                 return false;
             }

@@ -68,4 +68,87 @@ services:
     Geekco\CmsBundle\Controller\:
         resource: '../vendor/geekco/cmsbundle/src/Controller'
         tags: ['controller.service_arguments']
+
+    Geekco\CmsBundle\EventListener\PageListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true}
+            - { name: doctrine.event_listener, event: preUpdate, lazy: true }
+    Geekco\CmsBundle\EventListener\ResourceListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
+            - { name: doctrine.event_listener, event: postUpdate, lazy: true }
+    Geekco\CmsBundle\Services\FileUploader:
+        arguments:
+            $targetDir: "%geekco_cms.targetDir%"
+
+    Geekco\CmsBundle\Twig\TwigExtension:
+        arguments:
+            $targetDir: "%geekco_cms.targetDir%"
+            $targetDir_relative: "%geekco_cms.targetDir_relative%"
+
+    Geekco\CmsBundle\EventListener\ImageResourceListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true}
+            - { name: doctrine.event_listener, event: preUpdate, lazy: true}
+            - { name: doctrine.event_listener, event: postLoad, lazy: true}
+            - { name: doctrine.event_listener, event: preRemove, lazy: true}
+
+    Geekco\CmsBundle\Services\ModuleManager:
+        arguments:
+            $targetDir: "%geekco_cms.targetDir%"
+            $pathFixturesImg: "%kernel.project_dir%/src/DataFixtures/images/"
+```
+
+### Step 6: Create the configuration file
+
+```yaml
+# config/packages/geekco_cms.yaml
+geekco_cms:
+    targetDir_relative: 'cms/uploads'
+    targetDir: '%kernel.project_dir%/public/cms/uploads'
+
+twig:
+    paths:
+        '%kernel.project_dir%/vendor/geekco/cmsbundle/src/Resources/views': geekco_cms
+```
+
+### Step 7: Configure security.yaml
+
+```yaml
+security:
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+    encoders:
+        Geekco\CmsBundle\Entity\User:
+            algorithm: bcrypt
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        our_db_provider:
+            entity:
+                class: Geekco\CmsBundle\Entity\User
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern:    ^/
+            http_basic: ~
+            provider: our_db_provider
+            switch_user: ~
+
+            anonymous: ~
+
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            form_login:
+                login_path: connexion
+                check_path: connexion
+                csrf_token_generator: security.csrf.token_manager
+
+            logout:
+                path: /deconnexion
+                target: /
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
 ```
