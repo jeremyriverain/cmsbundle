@@ -13,16 +13,16 @@ class TwigExtension extends \Twig_Extension
 
     private $slugify;
 
-    private $image_directory_relative_path;
-
     private $targetDir;
 
-    public function __construct(EntityManagerInterface $em, Slugify $slugify, $targetDir, $image_directory_relative_path)
+    private $targetDir_relative;
+
+    public function __construct(EntityManagerInterface $em, Slugify $slugify, $targetDir, $targetDir_relative)
     {
         $this->em = $em;
         $this->slugify = $slugify;
-        $this->image_directory_relative_path = $image_directory_relative_path;
         $this->targetDir = $targetDir;
+        $this->targetDir_relative = $targetDir_relative;
     }
 
     public function getFunctions()
@@ -71,11 +71,11 @@ class TwigExtension extends \Twig_Extension
     {
         if (mime_content_type($this->targetDir."/".$filename) === 'image/svg+xml' || $filter === null)
         {
-            return $this->image_directory_relative_path."/".$filename;
+            return $this->targetDir_relative."/".$filename;
         }
         else
         {
-            return $this->image_directory_relative_path."/".$filter.$filename;
+            return $this->targetDir_relative."/".$filter.$filename;
         }
     }
 

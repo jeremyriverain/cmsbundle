@@ -1,11 +1,11 @@
-cms:
-    user_namespace: Geekco\Entity\User
-    userType_namespace: Geekco\Form\UserType
+geekco_cms:
+    user_namespace: Geekco\CmsBundle\Entity\User
+    userType_namespace: Geekco\CmsBundle\Form\UserType
     image_directory: '%kernel.project_dir%/public/cms/uploads'
     image_directory_relative_path: 'cms/uploads'
 
 twig:
     paths:
-        '%kernel.project_dir%/src/CmsBundle/Resources/views': cms
+        '%kernel.project_dir%/src/CmsBundle/Resources/views': geekco_cms
     globals:
         kernelProjectDir: "%kernel.project_dir%"

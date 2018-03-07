@@ -1,10 +1,10 @@
 <nav class="grey lighten-4">
     <div class="nav-wrapper">
-        <a href="{{path('admin')}}" class="ml-1 brand-logo show-on-large hide-on-med-and-down" style="">Admin</a>
+        <a href="{{path('geekco_cms_admin')}}" class="ml-1 brand-logo show-on-large hide-on-med-and-down" style="">Admin</a>
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right">
             <li>
-                <a class='' target="_blank" href='{{page is defined and page is not null ? path('app_app_index', {'slug': page.slug}) : path('homepage')}}'{# data-alignment="right" data-beloworigin="true" data-constrainwidth="false" data-activates='dropdown_nav'<]>[><i class="material-icons">more_vert</i>#} >voir le site</a>
+                <a class='' target="_blank" href='{{page is defined and page is not null ? path('app_app_index', {'slug': page.slug}) : path('geekco_cms_index')}}'{# data-alignment="right" data-beloworigin="true" data-constrainwidth="false" data-activates='dropdown_nav'<]>[><i class="material-icons">more_vert</i>#} >voir le site</a>
             </li>
         </ul>
     </div>
@@ -27,16 +27,13 @@
 
             <!-- Dropdown Structure -->
             <ul id='dropdown1' class='dropdown-content'>
-                <li><a href="{{path('admin_administrateur_update', {'id': app.user.id})}}">mon compte</a></li>
+                <li><a href="{{path('geekco_cms_admin_administrateur_update', {'id': app.user.id})}}">mon compte</a></li>
                 <li><a href="{{path('logout')}}">se déconnecter</a></li>
             </ul>
 
         </div>
     </li>
-    {#<li><a href="{{path('admin_menu_update', {'name': 'navbar'})}}"><i class="material-icons">map</i>Menu</a></li>#}
-    <li><a href="{{path('admin_page_list')}}"><i class="material-icons">pages</i>Pages</a></li>
-    <li><a href="{{path('admin_administrateur_list')}}"><i class="material-icons">security</i>Administrateurs</a></li>
+    <li><a href="{{path('geekco_cms_page_list')}}"><i class="material-icons">pages</i>Pages</a></li>
+    <li><a href="{{path('geekco_cms_administrateur_list')}}"><i class="material-icons">security</i>Administrateurs</a></li>
     <li><a href="https://stats.geekco.fr" target="blank"><i class="material-icons">network_check</i> Statistiques de visite</a></li>
 </ul>
-
-

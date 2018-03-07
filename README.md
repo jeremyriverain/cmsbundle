@@ -68,4 +68,46 @@ services:
     Geekco\CmsBundle\Controller\:
         resource: '../vendor/geekco/cmsbundle/src/Controller'
         tags: ['controller.service_arguments']
+
+    Geekco\CmsBundle\EventListener\PageListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true}
+            - { name: doctrine.event_listener, event: preUpdate, lazy: true }
+    Geekco\CmsBundle\EventListener\ResourceListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true }
+            - { name: doctrine.event_listener, event: postUpdate, lazy: true }
+    Geekco\CmsBundle\Services\FileUploader:
+        arguments:
+            $targetDir: "%geekco_cms.targetDir%"
+
+    Geekco\CmsBundle\Twig\TwigExtension:
+        arguments:
+            $targetDir: "%geekco_cms.targetDir%"
+            $targetDir_relative: "%geekco_cms.targetDir_relative%"
+
+    Geekco\CmsBundle\EventListener\ImageResourceListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true}
+            - { name: doctrine.event_listener, event: preUpdate, lazy: true}
+            - { name: doctrine.event_listener, event: postLoad, lazy: true}
+            - { name: doctrine.event_listener, event: preRemove, lazy: true}
+
+    Geekco\CmsBundle\Services\ModuleManager:
+        arguments:
+            $targetDir: "%geekco_cms.targetDir%"
+            $pathFixturesImg: "%kernel.project_dir%/src/DataFixtures/images/"
+```
+
+### Step 6: Create the configuration file
+
+```yaml
+# config/packages/geekco_cms.yaml
+geekco_cms:
+    targetDir_relative: 'cms/uploads'
+    targetDir: '%kernel.project_dir%/public/cms/uploads'
+
+twig:
+    paths:
+        '%kernel.project_dir%/vendor/geekco/cmsbundle/src/Resources/views': geekco_cms
 ```
