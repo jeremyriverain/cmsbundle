@@ -35,6 +35,10 @@ return [
 
 ```yaml
 # config/routes.yaml
+
+logout:
+    path: /deconnexion
+
 geekco_cms_bundle:
     resource: '@GeekcoCmsBundle/Controller/'
     type: annotation

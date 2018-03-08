@@ -1,5 +1,5 @@
 {% macro delete_icon(namespace, id, legend) %}
-<a href="#" data-namespace="{{namespace}}" data-id="{{id}}" data-url="{{path('admin_ajax_delete')}}" 
+<a href="#" data-namespace="{{namespace}}" data-id="{{id}}" data-url="{{path('geekco_cms_ajax_delete')}}" 
                                                             {% if legend is not null %}
                                                                 data-tooltip="{{legend}}"
                                                                 data-delay="50"
@@ -32,7 +32,7 @@
 <div class="switch">
     <label>
         Non
-        <input type="checkbox" class="switch-action" {{initialValue == true ? "checked"}} data-namespaceParent="{{namespaceParent}}" data-id="{{id}}" data-method="{{method}}" data-url="{{path('admin_ajax_switch')}}">
+        <input type="checkbox" class="switch-action" {{initialValue == true ? "checked"}} data-namespaceParent="{{namespaceParent}}" data-id="{{id}}" data-method="{{method}}" data-url="{{path('geekco_cms_ajax_switch')}}">
         <span class="lever"></span>
         Oui
     </label>
@@ -63,7 +63,7 @@
 {% endmacro%}
 
 {% macro property_updater(namespace, id, method, value) %}
-<form action="{{path('admin_ajax_propertyupdater')}}" method="POST">
+<form action="{{path('geekco_cms_ajax_propertyupdater')}}" method="POST">
         <input class="updatable-item" type="text" value="{{value}}" class="grey lighten-4" style="max-width:200px" data-namespace={{namespace}} data-id={{id}} data-method={{method}}>
     </form>
 {% endmacro %}

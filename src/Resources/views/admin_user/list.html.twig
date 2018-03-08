@@ -24,11 +24,11 @@
 							<td>{{e.username}}</td>
 							<td>{{e.email}}</td>
 							<td>
-                                {{macros.switch_field(e.isActive, "Geekco\\Entity\\User", e.id, "setIsActive")}}	
+                                {{macros.switch_field(e.isActive, "Geekco\\CmsBundle\\Entity\\User", e.id, "setIsActive")}}	
 							</td>
 							<td> 
-                                {{macros.edit_icon(path('admin_administrateur_update', {'id': e.id}), 'Modifier le profil')}}
-                                {{ macros.delete_icon('Geekco\\Entity\\User', e.id, 'Supprimer le membre') }}
+                                {{macros.edit_icon(path('geekco_cms_administrateur_update', {'id': e.id}), 'Modifier le profil')}}
+                                {{ macros.delete_icon('Geekco\\CmsBundle\\Entity\\User', e.id, 'Supprimer le membre') }}
 							</td>
 						</tr>
 					{% endfor %}
@@ -36,7 +36,7 @@
 				</tbody>
 			</table>
             
-            {{ macros.new_icon(path('admin_administrateur_new'), 'Nouvel admin') }}
+            {{ macros.new_icon(path('geekco_cms_administrateur_new'), 'Nouvel admin') }}
 
 		</div>
 	</div>
