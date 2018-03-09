@@ -24,20 +24,7 @@ This command requires you to have Composer installed globally, as explained
 in the [installation chapter](https://getcomposer.org/doc/00-intro.md)
 of the Composer documentation.
 
-### Step 2: Enable the Bundle
-
-Then, enable the bundle by adding it to the list of registered bundles
-in the `config/bundles.php` file of your project:
-
-```php
-// config/bundles.php
-<?php
-return [
-    Geekco\CmsBundle\GeekcoCmsBundle::class => ['all' => true],
-];
-```
-
-### Step 3: Import routes
+### Step 2: Import routes
 
 ```yaml
 # config/routes.yaml
@@ -50,7 +37,7 @@ geekco_cms_bundle:
     type: annotation
 ```
 
-### Step 4: Load the entities
+### Step 3: Load the entities
 
 ```yaml
 // config/packages/doctrine.yaml
@@ -66,7 +53,7 @@ doctrine:
                 alias: Geekco_Cms
 ```
 
-### Step 5: change the locale
+### Step 4: change the locale
 
 ``` yaml
 # config/parameters.yml
@@ -74,7 +61,7 @@ parameters:
     locale: 'fr'
 ```
 
-### Step 6: Load the services
+### Step 5: Load the services
 
 ```yaml
 // config/services.yaml
@@ -117,7 +104,7 @@ services:
             $pathFixturesImg: "%kernel.project_dir%/src/DataFixtures/images/"
 ```
 
-### Step 7: Create the configuration file
+### Step 6: Create the configuration file
 
 ```yaml
 # config/packages/geekco_cms.yaml
@@ -126,7 +113,7 @@ geekco_cms:
     targetDir: '%kernel.project_dir%/public/cms/uploads'
 ```
 
-### Step 8: Update some configuration's symfony packages
+### Step 7: Update some configuration's symfony packages
 
 ```yaml
 # config/packages/framework.yaml
@@ -149,7 +136,7 @@ twig:
         '%kernel.project_dir%/vendor/geekco/cmsbundle/src/Resources/views': geekco_cms
 ```
 
-### Step 7: Configure security.yaml
+### Step 8: Configure security.yaml
 
 ```yaml
 security:
@@ -191,7 +178,7 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
 ```
 
-### Step 8: configure the mailer env parameter
+### Step 9: configure the mailer env parameter
 
 In order to reset a password when it's requested by an admin, you must configure the MAILER_URL in your .env file located at the root of your project. If you use gmail, it could be:
 
