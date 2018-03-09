@@ -37,31 +37,15 @@ geekco_cms_bundle:
     type: annotation
 ```
 
-### Step 3: Load the entities
-
-```yaml
-// config/packages/doctrine.yaml
-doctrine:
-    orm:
-        # ...
-        mappings:
-            Geekco_Cms:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/vendor/geekco/cmsbundle/src/Entity'
-                prefix: 'Geekco\CmsBundle\Entity'
-                alias: Geekco_Cms
-```
-
-### Step 4: change the locale
+### Step 3: change the locale if you are not english native speaker (like me)
 
 ``` yaml
-# config/parameters.yml
+# config/services.yml
 parameters:
     locale: 'fr'
 ```
 
-### Step 5: Load the services
+### Step 4: Load the services
 
 ```yaml
 // config/services.yaml
@@ -104,7 +88,7 @@ services:
             $pathFixturesImg: "%kernel.project_dir%/src/DataFixtures/images/"
 ```
 
-### Step 6: Create the configuration file
+### Step 5: Create the configuration file
 
 ```yaml
 # config/packages/geekco_cms.yaml
@@ -113,7 +97,7 @@ geekco_cms:
     targetDir: '%kernel.project_dir%/public/cms/uploads'
 ```
 
-### Step 7: Update some configuration's symfony packages
+### Step 6: Update some configuration's symfony packages
 
 ```yaml
 # config/packages/framework.yaml
@@ -136,7 +120,7 @@ twig:
         '%kernel.project_dir%/vendor/geekco/cmsbundle/src/Resources/views': geekco_cms
 ```
 
-### Step 8: Configure security.yaml
+### Step 7: Configure security.yaml
 
 ```yaml
 security:
@@ -178,10 +162,42 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
 ```
 
+### Step 8: Load the entities
+
+```yaml
+// config/packages/doctrine.yaml
+doctrine:
+    orm:
+        # ...
+        mappings:
+            Geekco_Cms:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/vendor/geekco/cmsbundle/src/Entity'
+                prefix: 'Geekco\CmsBundle\Entity'
+                alias: Geekco_Cms
+```
+
+Then create your database (don't forget to check the DATABASE_URL in .env). And update your database schema with those commands:
+
+
+```console
+$ bin/console doctrine:database:create
+$ bin/console doctrine:database:diff
+$ bin/console doctrine:database:migrate
+```
+
+
 ### Step 9: configure the mailer env parameter
 
 In order to reset a password when it's requested by an admin, you must configure the MAILER_URL in your .env file located at the root of your project. If you use gmail, it could be:
 
 ```lang
 MAILER_URL=gmail://gmail_username:gmail_password@localhost?encryption=tls&auth_mode=oauth
+```
+
+### Step 10: symlink the assets
+
+```console
+$ bin/console assets:install --symlink
 ```
