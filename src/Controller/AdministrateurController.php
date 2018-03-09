@@ -35,7 +35,7 @@ class AdministrateurController extends Controller
             }
         }
 
-        return $this->render('@geekco_cms/admin_user/list.html.twig', [
+        return $this->render('@GeekcoCms/admin_user/list.html.twig', [
             'admins' => $admins
         ]);
 
@@ -67,7 +67,7 @@ class AdministrateurController extends Controller
             return $this->redirectToRoute("geekco_cms_administrateur_list");
         }
 
-        return $this->render('@geekco_cms/admin_user/new.html.twig', [
+        return $this->render('@GeekcoCms/admin_user/new.html.twig', [
             'form' => $form->createView()
         ]);
 
@@ -106,7 +106,7 @@ class AdministrateurController extends Controller
             return $this->redirectToRoute("geekco_cms_administrateur_list");
         }
 
-        return $this->render('@geekco_cms/admin_user/update.html.twig', [
+        return $this->render('@GeekcoCms/admin_user/update.html.twig', [
             'form' => $form->createView()
         ]);
 

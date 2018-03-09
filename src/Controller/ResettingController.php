@@ -57,7 +57,7 @@ class ResettingController extends Controller
                 $user->setPasswordRequestedAt(new \Datetime());
                 $em->flush();
 
-                $bodyMail = $mailer->createBodyMail('@geekco_cms/resetting/mail.html.twig', [
+                $bodyMail = $mailer->createBodyMail('@GeekcoCms/resetting/mail.html.twig', [
                     'user' => $user
                 ]);
 
@@ -69,7 +69,7 @@ class ResettingController extends Controller
             }
         }
 
-        return $this->render('@geekco_cms/resetting/request.html.twig', [
+        return $this->render('@GeekcoCms/resetting/request.html.twig', [
             'form' => $form->createView()
         ]);
     }
@@ -120,7 +120,7 @@ class ResettingController extends Controller
 
         }
 
-        return $this->render('@geekco_cms/resetting/index.html.twig', [
+        return $this->render('@GeekcoCms/resetting/index.html.twig', [
             'form' => $form->createView()
         ]);
 

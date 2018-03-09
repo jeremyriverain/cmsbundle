@@ -1,8 +1,8 @@
-{% extends "@geekco_cms/base.html.twig" %}
+{% extends "@GeekcoCms/base.html.twig" %}
 
 {% block body %}
-    {% import "@geekco_cms/macros.html.twig" as macros %}
-    {% form_theme form '@geekco_cms/menu/menu_item_theme.html.twig' "@geekco_cms/form.html.twig" %}
+    {% import "@GeekcoCms/macros.html.twig" as macros %}
+    {% form_theme form '@GeekcoCms/menu/menu_item_theme.html.twig' "@GeekcoCms/form.html.twig" %}
 
         {% set menu = app.request.attributes.get('menu')  %}
 

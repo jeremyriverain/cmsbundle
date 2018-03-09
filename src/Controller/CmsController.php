@@ -17,7 +17,7 @@ class CmsController extends Controller
      */
     public function index()
     {
-        return $this->render('@geekco_cms/index.html.twig', [
+        return $this->render('@GeekcoCms/index.html.twig', [
                 
         ]);
     }

@@ -111,15 +111,6 @@ framework:
                 json_manifest_path: '%kernel.project_dir%/public/bundles/geekcocms/build/manifest.json'
 ```
 
-```yaml
-# config/packages/twig.yaml
-twig:
-    # ...
-    paths:
-        '%kernel.project_dir%/templates': app
-        '%kernel.project_dir%/vendor/geekco/cmsbundle/src/Resources/views': geekco_cms
-```
-
 ### Step 7: Configure security.yaml
 
 ```yaml

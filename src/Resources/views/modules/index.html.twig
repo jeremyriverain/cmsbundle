@@ -1,4 +1,4 @@
-{% extends "@geekco_cms/base.html.twig" %}
+{% extends "@GeekcoCms/base.html.twig" %}
 
 {% set module = app.request.attributes.get('module') %}
 
@@ -22,7 +22,7 @@
 
     {% endif %}
 
-    {{include("@geekco_cms/flash.html.twig")}}
+    {{include("@GeekcoCms/flash.html.twig")}}
 
     <div class="container" id="update_module">
         <div class="row">
@@ -34,7 +34,7 @@
                     <p class="card-panel "><i class="material-icons">info</i> {{module.description}}</p>
                 {% endif%}
 
-                {% include ('@geekco_cms/modules/form.html.twig') with {'module': module}%}
+                {% include ('@GeekcoCms/modules/form.html.twig') with {'module': module}%}
             </div>
         </div>
     </div>

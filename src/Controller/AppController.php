@@ -21,7 +21,7 @@ class AppController extends Controller
             $page = $em->getRepository(Page::class)->getPageWithModules('accueil');
             if (!$page)
             {
-                return $this->render('@geekco_cms/no-homepage.html.twig', [
+                return $this->render('@GeekcoCms/no-homepage.html.twig', [
                         
                 ]);
             }
@@ -69,7 +69,7 @@ class AppController extends Controller
             $options['form'] = $form->createView();
         }
 
-        return $this->render("@geekco_cms/page.html.twig", $options);
+        return $this->render("@GeekcoCms/page.html.twig", $options);
     }
 
     /**

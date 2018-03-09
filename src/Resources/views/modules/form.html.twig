@@ -1,11 +1,11 @@
-{% import "@geekco_cms/macros.html.twig" as macros %}
+{% import "@GeekcoCms/macros.html.twig" as macros %}
 
-{% form_theme form "@geekco_cms/form.html.twig" %}
+{% form_theme form "@GeekcoCms/form.html.twig" %}
 <div class="section form-container">
     {{form_start(form, {'attr': {"id": 'form-update-module'}})}}
 
     {% set configuration = module.resource is not null ? module.resource.configuration : null %}
-    {%include '@geekco_cms/modules/resource_form.html.twig' with {'configuration' : configuration, 'form': form}%}
+    {%include '@GeekcoCms/modules/resource_form.html.twig' with {'configuration' : configuration, 'form': form}%}
 
     {% if form.children is defined %}
         <div class="children-module-container" data-positionable="{{module.areChildrenPositionable == true ? 'true': 'false'}}">
@@ -15,7 +15,7 @@
                 <div class=" section sub-module pl-1 pr-1 mb-2">
                     <br> 
                     {% set configuration = current.vars.value.resource.configuration  %}
-                    {%include '@geekco_cms/modules/resource_form.html.twig' with {'configuration' : configuration, 'form': current } only %}
+                    {%include '@GeekcoCms/modules/resource_form.html.twig' with {'configuration' : configuration, 'form': current } only %}
 
                     {% do current.setRendered %}
                     <p class="{{loop.index0 is even ? 'right': 'left'}} d-f jc-c ai-c">

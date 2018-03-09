@@ -1,4 +1,4 @@
-{% extends('@geekco_cms/mail/layout.html.twig') %}
+{% extends('@GeekcoCms/mail/layout.html.twig') %}
 
 {% set title = "Renouvellement du mot de passe" %}
 
@@ -10,7 +10,7 @@
     {{ title }}
 {% endblock %}
 
-{% import "@geekco_cms/mail/macros/mail_macros.html.twig" as macros_mail %}
+{% import "@GeekcoCms/mail/macros/mail_macros.html.twig" as macros_mail %}
 
 {% block body %}
     {{macros_mail.one_column_plus_button(title, 

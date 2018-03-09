@@ -41,7 +41,7 @@ class PageController extends Controller
         {
             $pages = $em->getRepository(Page::class)->findAll();
         }
-        return $this->render('@geekco_cms/page/list.html.twig', [
+        return $this->render('@GeekcoCms/page/list.html.twig', [
             'pages' => $pages,
             'filterResponse' => $filterResponse,
         ]);
@@ -70,7 +70,7 @@ class PageController extends Controller
             ]);
         }
 
-        return $this->render('@geekco_cms/page/new.html.twig', [
+        return $this->render('@GeekcoCms/page/new.html.twig', [
             'form' => $form->createView()
         ]);
 
@@ -134,7 +134,7 @@ class PageController extends Controller
 
         $bases = $moduleManager->getPotentialModules($page);
 
-        return $this->render('@geekco_cms/page/update.html.twig', [
+        return $this->render('@GeekcoCms/page/update.html.twig', [
             'page' => $page,
             'bases' => $bases,
             'pages' => $pages,

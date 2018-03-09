@@ -38,7 +38,7 @@ class MenuController extends Controller
             }
         }
 
-        return $this->render('@geekco_cms/menu/update.html.twig', [
+        return $this->render('@GeekcoCms/menu/update.html.twig', [
             'form' => $form->createView(),
             'pages' => $pages
         ]);

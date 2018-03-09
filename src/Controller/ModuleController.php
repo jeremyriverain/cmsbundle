@@ -98,7 +98,7 @@ class ModuleController extends Controller
                 ]);
             }
         }
-        return $this->render('@geekco_cms/modules/index.html.twig', [
+        return $this->render('@GeekcoCms/modules/index.html.twig', [
             'form' => $form->createView(),
             'page' => $module->getPage()
         ]);
