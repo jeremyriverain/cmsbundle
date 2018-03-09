@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+    <head>
+        <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+        <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+        <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+
+        <title>
+            {% block title %}
+
+            {% endblock %}
+        </title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+        {{include('@geekco_cms/mail/css_reset.html.twig')}}
+
+        {{include('@geekco_cms/mail/progressive_enhancements.html.twig')}} 
+
+        <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+        <!--[if gte mso 9]>
+            <xml>
+            <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+            </xml>
+        <![endif]-->
+
+    </head>
+    <body width="100%" bgcolor="#222222" style="margin: 0; mso-line-height-rule: exactly;">
+        <center style="width: 100%; background: #eaeaea; text-align: left;">
+
+            <!-- Visually Hidden Preheader Text : BEGIN -->
+            <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
+                {% block preheader %}
+
+                {% endblock %}
+            </div>
+            <!-- Visually Hidden Preheader Text : END -->
+
+            <!-- Email Header : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+                <tr>
+                    <td style="padding: 20px 0; text-align: center">
+
+                        {#<img src="{{ absolute_url(asset('images/logo_mail.png')) }}" width="150" height="auto" alt="logo" border="0" style="height: auto; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">#}
+                       
+                        {#<h5 style="height: auto; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #555555;">#}
+                            {#{{coordonnees.denomination|capitalize}}#}
+                        {#</h5>#}
+                    
+                    </td>
+                </tr>
+            </table>
+            <!-- Email Header : END -->
+
+            <!-- Email Body : BEGIN -->
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="600" style="margin: auto;" class="email-container">
+                {% block body %}
+
+                {% endblock %}
+            </table>
+            <!-- Email Body : END -->
+
+            <!-- Email Footer : BEGIN -->
+            {#<table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%" style="max-width: 680px; font-family: sans-serif; color: #888888; font-size: 12px; line-height: 140%;">#}
+                {#<tr>#}
+                    {#<td style="padding: 40px 10px; width: 100%; font-family: sans-serif; font-size: 12px; line-height: 140%; text-align: center; color: #888888;" class="x-gmail-data-detectors">#}
+                        {#{{coordonnees.denomination|capitalize}}<br>{{coordonnees.email}}#}
+                    {#</td>#}
+                {#</tr>#}
+            {#</table>#}
+            <!-- Email Footer : END -->
+
+            {% block sub_footer %}
+                <!-- Full Bleed Background Section : BEGIN -->
+                <table role="presentation" bgcolor="#709f2b" cellspacing="0" cellpadding="0" border="0" align="center" width="100%">
+                    <tr>
+                        <td valign="top" align="center">
+                            <div style="max-width: 600px; margin: auto;" class="email-container">
+                                <!--[if mso]>
+                                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+                                    <tr>
+                                    <td>
+                                <![endif]-->
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                    <tr>
+                                        <td style="padding: 40px; text-align: left; font-family: sans-serif; font-size: 15px; line-height: 140%; color: #ffffff;">
+                                            <p style="margin: 0;">Maecenas sed ante pellentesque, posuere leo id, eleifend dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent laoreet malesuada cursus. Maecenas scelerisque congue eros eu posuere. Praesent in felis ut velit pretium lobortis rhoncus ut&nbsp;erat.</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <!--[if mso]>
+                                    </td>
+                                    </tr>
+                                    </table>
+                                <![endif]-->
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <!-- Full Bleed Background Section : END -->
+
+            {% endblock %}
+
+        </center>
+    </body>
+</html>

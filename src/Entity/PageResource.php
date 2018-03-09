@@ -44,6 +44,7 @@ class PageResource implements ResourceInterface
 
     /**
     * @ORM\ManyToOne(targetEntity="Page")
+    * @ORM\JoinColumn( onDelete="SET NULL")
     */
     private $page;
 

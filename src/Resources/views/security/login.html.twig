@@ -7,6 +7,9 @@
 
 {% block main %}
 
+    {% block flash %}                
+        {{include("@geekco_cms/flash.html.twig")}}
+    {% endblock %}
 
     <div class="section valign-wrapper">
         <div class="container">

@@ -6,9 +6,15 @@ This project is not stable at all. In fact, the bundle is very helpful in my pro
 Installation
 ============
 
-### Step 1: Download the Bundle
+### Step 1: Install Symfony and download the CMS Bundle
 
-Open a command console, enter your project directory and execute the following command to download the latest stable version of this bundle:
+If you definitly want to use this bundle, I strongly recommend to install it at the beginning of your project because cmsbundle relies heavily on overrides of controllers, routes. It will probably mess your project up if you install it in the middle of it. So, ideally first step: install Symfony.
+
+```console
+$ composer create-project symfony/website-skeleton my-project
+```
+
+Then, enter your project directory and execute the following command to download the latest stable version of this bundle:
 
 ```console
 $ composer require geekco/cmsbundle:dev-master
@@ -183,4 +189,12 @@ security:
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
+```
+
+### Step 8: configure the mailer env parameter
+
+In order to reset a password when it's requested by an admin, you must configure the MAILER_URL in your .env file located at the root of your project. If you use gmail, it could be:
+
+```lang
+MAILER_URL=gmail://gmail_username:gmail_password@localhost?encryption=tls&auth_mode=oauth
 ```

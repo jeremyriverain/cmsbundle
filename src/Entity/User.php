@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 
 /**
- * @ORM\Table(name="geekco_cms_users")
+ * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="Geekco\CmsBundle\Repository\UserRepository")
  * @UniqueEntity(fields="email", message="Cet email est déjà enregistré en base.")
  * @UniqueEntity(fields="username", message="Cet identifiant est déjà enregistré en base")

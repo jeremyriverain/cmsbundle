@@ -1,4 +1,4 @@
-{% extends('mail/layout.html.twig') %}
+{% extends('@geekco_cms/mail/layout.html.twig') %}
 
 {% set title = "Renouvellement du mot de passe" %}
 
@@ -10,14 +10,14 @@
     {{ title }}
 {% endblock %}
 
-{% import "mail/macros/mail_macros.html.twig" as macros_mail %}
+{% import "@geekco_cms/mail/macros/mail_macros.html.twig" as macros_mail %}
 
 {% block body %}
     {{macros_mail.one_column_plus_button(title, 
 
     "Bonjour, vous pourrez changer votre mot de passe en cliquant sur le lien ci-dessous." ,
 
-    absolute_url(path('resetting', {'id': user.id, 'token': user.token})), "Changer mon mot de passe" )}}	
+    absolute_url(path('geekco_cms_resetting', {'id': user.id, 'token': user.token})), "Changer mon mot de passe" )}}	
 {% endblock %}
 
 {% block sub_footer %}

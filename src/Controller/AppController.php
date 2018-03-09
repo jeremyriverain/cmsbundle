@@ -21,7 +21,9 @@ class AppController extends Controller
             $page = $em->getRepository(Page::class)->getPageWithModules('accueil');
             if (!$page)
             {
-                return new Response("Pseudo page d'accueil");
+                return $this->render('@geekco_cms/no-homepage.html.twig', [
+                        
+                ]);
             }
         }
         else

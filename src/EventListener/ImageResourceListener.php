@@ -67,7 +67,7 @@ class ImageResourceListener
         }
 
         $fileName = $entity->getImage();
-        if ($fileName !== null) {
+        if (!empty($fileName)) {
             if(file_exists($this->uploader->getTargetDir().'/'.$fileName)) {
                 $entity->setImageFile( new File($this->uploader->getTargetDir().'/'.$fileName));
             }
@@ -98,14 +98,14 @@ class ImageResourceListener
 
     private function deleteFile(string $fileName)
     {
-        if (file_exists($this->uploader->getTargetDir()."/".$fileName))
+        if (file_exists($this->uploader->getTargetDir()."/".$fileName) && is_file($this->uploader->getTargetDir()."/".$fileName))
         {    
             unlink($this->uploader->getTargetDir()."/".$fileName);
 
         }
         foreach ($this->imageManager->getScaleFilters() as $f)
         {
-            if(file_exists($this->uploader->getTargetDir()."/".$f['prefix'].$fileName)) {
+            if(file_exists($this->uploader->getTargetDir()."/".$f['prefix'].$fileName) && is_file($this->uploader->getTargetDir()."/".$fileName)) {
             unlink($this->uploader->getTargetDir()."/".$f['prefix'].$fileName);
         }
         }
