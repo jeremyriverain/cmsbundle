@@ -1,4 +1,6 @@
 {% import "@geekco_cms/macros.html.twig" as macros %}
+
+{% form_theme form "@geekco_cms/form.html.twig" %}
 {% if form.resource.stringResources is defined %}
     {% for f in form.resource.stringResources  %}
         <div class="input-field">

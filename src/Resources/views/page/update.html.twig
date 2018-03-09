@@ -18,7 +18,7 @@
 
 					<li class="collection-item d-f jc-spb ai-c fld-c-on-small">
 						<div class="valign-wrapper">
-							<a data-tooltip="modifier le menu"  href="{{path('admin_menu_update', {'name': 'navbar'})}}" class="pr-1 tooltipped"><i class="material-icons amber-text">edit</i></a> 
+							<a data-tooltip="modifier le menu"  href="{{path('geekco_cms_menu_update', {'name': 'navbar'})}}" class="pr-1 tooltipped"><i class="material-icons amber-text">edit</i></a> 
 							Menu
 						</div>
 					</li>
@@ -28,7 +28,7 @@
                             <li class="collection-item item-collection {{a.isPositionableInThePage == true ? 'sortable-item' }} d-f ai-c fld-c-on-small" data-collection-position="{{loop.index0}}" data-collection-id={{a.id}}>
 								<div class="valign-wrapper">
 									{% if a.resource is not null %}
-										<a href="{{path('admin_module_update', {'id': a.id})}}" class="mr-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="modifier le module"><i class="material-icons amber-text">edit</i></a>
+										<a href="{{path('geekco_cms_module_update', {'id': a.id})}}" class="mr-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="modifier le module"><i class="material-icons amber-text">edit</i></a>
 									{% endif %}
                                     {% if a.deletable == true %}
 									{{ macros.delete_icon('Geekco\\CmsBundle\\Entity\\Module', a.id, "supprimer le module") }}
@@ -59,7 +59,7 @@
 
 					<li class="collection-item d-f jc-spb ai-c fld-c-on-small">
 						<div class="valign-wrapper">
-                            <a href="{{path('admin_menu_update', {'name': 'footer'})}}" class="pr-1"><i class="material-icons amber-text">edit</i></a> 
+                            <a href="{{path('geekco_cms_menu_update', {'name': 'footer'})}}" class="pr-1"><i class="material-icons amber-text">edit</i></a> 
 							<p>
 							Footer
 							</p>
@@ -89,7 +89,7 @@
 					</h4>
 					<ul class="section table-of-contents">
 						{% for p in pages  %}
-							<li><a class="{{path('admin_page_update', {'id': p.id}) == app.request.pathInfo ? 'active'}}" href="{{path('admin_page_update', {'id': p.id})}}">{{p.name|capitalize}}</a>   <span class="badge new" data-badge-caption="">
+							<li><a class="{{path('geekco_cms_page_update', {'id': p.id}) == app.request.pathInfo ? 'active'}}" href="{{path('geekco_cms_page_update', {'id': p.id})}}">{{p.name|capitalize}}</a>   <span class="badge new" data-badge-caption="">
 {% set count = p.modules|length %}
 									{% transchoice count %}
 									{0} Aucun module|{1} 1 module|]1,Inf[ %count% modules

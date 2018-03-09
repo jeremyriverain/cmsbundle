@@ -1,4 +1,6 @@
 {% import "@geekco_cms/macros.html.twig" as macros %}
+
+{% form_theme form "@geekco_cms/form.html.twig" %}
 <div class="section form-container">
     {{form_start(form, {'attr': {"id": 'form-update-module'}})}}
 
@@ -17,7 +19,7 @@
 
                     {% do current.setRendered %}
                     <p class="{{loop.index0 is even ? 'right': 'left'}} d-f jc-c ai-c">
-                    <a  data-id="{{current.vars.value.id}}" data-url="{{path('admin_ajax_delete')}}" data-namespace="\Geekco\CmsBundle\Entity\Module" class=" delete-action waves-effect waves-light btn red lighten-1 white-text tooltipped" data-tooltip="Supprimer la section"><i class="material-icons left">delete</i>section</a>
+                    <a  data-id="{{current.vars.value.id}}" data-url="{{path('geekco_cms_ajax_delete')}}" data-namespace="\Geekco\CmsBundle\Entity\Module" class=" delete-action waves-effect waves-light btn red lighten-1 white-text tooltipped" data-tooltip="Supprimer la section"><i class="material-icons left">delete</i>section</a>
                     </p>
                     <br>
                 </div>

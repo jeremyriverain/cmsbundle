@@ -4,7 +4,7 @@
         <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right">
             <li>
-                <a class='' target="_blank" href='{{page is defined and page is not null ? path('app_app_index', {'slug': page.slug}) : path('geekco_cms_index')}}'{# data-alignment="right" data-beloworigin="true" data-constrainwidth="false" data-activates='dropdown_nav'<]>[><i class="material-icons">more_vert</i>#} >voir le site</a>
+                <a class='' target="_blank" href='{{page is defined and page is not null ? path('geekco_cms_index', {'slug': page.slug}) : path('geekco_cms_index')}}'{# data-alignment="right" data-beloworigin="true" data-constrainwidth="false" data-activates='dropdown_nav'<]>[><i class="material-icons">more_vert</i>#} >voir le site</a>
             </li>
         </ul>
     </div>

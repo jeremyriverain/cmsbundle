@@ -33,7 +33,7 @@
                         </h4>
                         <ul class="section table-of-contents">
                             {% for p in pages  %}
-                                <li><a class="{{path('admin_page_update', {'id': p.id}) == app.request.pathInfo ? 'active'}}" href="{{path('admin_page_update', {'id': p.id})}}">{{p.name|capitalize}}</a>   <span class="badge new" data-badge-caption="">
+                                <li><a class="{{path('geekco_cms_page_update', {'id': p.id}) == app.request.pathInfo ? 'active'}}" href="{{path('geekco_cms_page_update', {'id': p.id})}}">{{p.name|capitalize}}</a>   <span class="badge new" data-badge-caption="">
                                         {% set count = p.modules|length %}
                                         {% transchoice count %}
                                         {0} Aucun module|{1} 1 module|]1,Inf[ %count% modules
