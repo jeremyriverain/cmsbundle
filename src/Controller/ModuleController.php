@@ -42,6 +42,7 @@ class ModuleController extends Controller
                 $child = $module->getChildren()->first();
 
                 $newChild = $moduleManager->copy($child);
+                $moduleManager->resetModule($newChild);
 
                 $em->persist($newChild);
 

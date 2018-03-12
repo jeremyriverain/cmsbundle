@@ -12,6 +12,7 @@ use Geekco\CmsBundle\Entity\Page;
 use Geekco\CmsBundle\Entity\Module;
 use Geekco\CmsBundle\Entity\ImageResource;
 use Geekco\CmsBundle\Entity\PageResource;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * ModuleManager
@@ -59,6 +60,30 @@ class ModuleManager
         return $copy;
     }
 
+    public function resetModule(Module $m)
+    {
+        $resource = $m->getResource();
+
+        $imageResources = $resource->getImageResources();
+        foreach ($imageResources as $i)
+        {
+            $resource->removeImageResource($i);
+        }
+        
+        $collection = new ArrayCollection(
+            array_merge(
+                $resource->getStringResources()->toArray(), 
+                $resource->getTextResources()->toArray()
+            )
+        );
+
+        foreach ($collection as $c)
+        {
+            $c->setValue(null);  
+        }
+
+
+    }
 
     private function setPositionOf(Module $module)
     {

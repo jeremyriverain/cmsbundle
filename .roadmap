@@ -1,6 +1,4 @@
-10 rows textarea reviews (or automatic adjustment when focus)
 bouton vidéo éditeur de texte
-+ section => proposer du contenu vide plutôt que des modules pré remplis
 videoupload => conversion im mp4, ogg (only format possible for now) and placeholder img
 
 svg processing for reducing file size for this format
