@@ -1,4 +1,5 @@
 import getLoader from './loader';
+import {createModal} from './modal';
 
 (function(){
 
@@ -59,7 +60,7 @@ import getLoader from './loader';
           {
             $(container).next().remove();
             $(container).css({opacity:1});
-            alert(response.message);
+            createModal(`<p>${response.message}</p>`);
           }
         }
       });
@@ -125,7 +126,6 @@ import getLoader from './loader';
       }
     });
   }
-
 
 })();
 

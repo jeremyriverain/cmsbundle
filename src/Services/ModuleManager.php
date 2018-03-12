@@ -97,7 +97,7 @@ class ModuleManager
             {
                 if ($module->getName() === $m->getName())
                 {    
-                    $error = "Le module ne peut pas être ajouté à la page.";
+                    $error = "Ce module existe déjà sur la page cible et a été configuré pour ne pas être ajouté plus d'1 fois sur la page.";
                     break;
                 }
             }

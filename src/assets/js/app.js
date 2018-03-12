@@ -10,7 +10,7 @@ require("materialize-css/js/jquery.hammer.js");
 require("materialize-css/js/global.js");
 //require("materialize-css/js/collapsible.js");
 require("materialize-css/js/dropdown.js");
-//require("materialize-css/js/modal.js");
+require("materialize-css/js/modal.js");
 //require("materialize-css/js/materialbox.js");
 //require("materialize-css/js/parallax.js");
 require("materialize-css/js/tabs.js");
@@ -40,6 +40,7 @@ require('./page');
 require('./propertyUpdater.js');
 require('./module.js');
 require('./ckeditor.js');
+require('./modal.js');
 
 // collection
 import {initCollection} from './collection';
@@ -57,28 +58,29 @@ import {initCollection} from './collection';
       draggable: false
     });
   }
-  
+
   // form select
   $('select').material_select();
 
   // form error
-    if($('form div.errors').length) {
-        let input = $('form div.errors').closest('div.input-field').find('input');
-        input.addClass('invalid');
-        input.prop("aria-invalid", "true");
-    }
+  if($('form div.errors').length) {
+    let input = $('form div.errors').closest('div.input-field').find('input');
+    input.addClass('invalid');
+    input.prop("aria-invalid", "true");
+  }
 
   // init collections
-    if($('.collection-container').length){
-        let containers = $('.collection-container');
-        $.each(containers, function(index, val){
-            initCollection.apply($(val), [{
-                max: Number($(val).data('max')),
-                afterAdd: function() {
-                    $('select').material_select();
-                }
-            }]);
-        });
-    }
+  if($('.collection-container').length){
+    let containers = $('.collection-container');
+    $.each(containers, function(index, val){
+      initCollection.apply($(val), [{
+        max: Number($(val).data('max')),
+        afterAdd: function() {
+          $('select').material_select();
+        }
+      }]);
+    });
+  }
+
 
 })();

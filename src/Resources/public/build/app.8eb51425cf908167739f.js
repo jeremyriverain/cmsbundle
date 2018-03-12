@@ -10558,47 +10558,55 @@ __webpack_require__(36);
 __webpack_require__(37);
 __webpack_require__(38);
 __webpack_require__(2);
+__webpack_require__(56);
 
 // collection
 
 
 (function () {
-    "use strict";
+  "use strict";
 
-    // admin navigation
+  // admin navigation
 
-    $('#admin .button-collapse').on('click', function (e) {
-        e.preventDefault();
+  $('#admin .button-collapse').on('click', function (e) {
+    e.preventDefault();
+  });
+
+  if ($(window).width() < 993) {
+    $("#admin .button-collapse").sideNav({
+      draggable: false
     });
+  }
 
-    if ($(window).width() < 993) {
-        $("#admin .button-collapse").sideNav({
-            draggable: false
-        });
-    }
+  // form select
+  $('select').material_select();
 
-    // form select
-    $('select').material_select();
+  // form error
+  if ($('form div.errors').length) {
+    var input = $('form div.errors').closest('div.input-field').find('input');
+    input.addClass('invalid');
+    input.prop("aria-invalid", "true");
+  }
 
-    // form error
-    if ($('form div.errors').length) {
-        var input = $('form div.errors').closest('div.input-field').find('input');
-        input.addClass('invalid');
-        input.prop("aria-invalid", "true");
-    }
+  // init collections
+  if ($('.collection-container').length) {
+    var containers = $('.collection-container');
+    $.each(containers, function (index, val) {
+      _collection.initCollection.apply($(val), [{
+        max: Number($(val).data('max')),
+        afterAdd: function afterAdd() {
+          $('select').material_select();
+        }
+      }]);
+    });
+  }
 
-    // init collections
-    if ($('.collection-container').length) {
-        var containers = $('.collection-container');
-        $.each(containers, function (index, val) {
-            _collection.initCollection.apply($(val), [{
-                max: Number($(val).data('max')),
-                afterAdd: function afterAdd() {
-                    $('select').material_select();
-                }
-            }]);
-        });
-    }
+  //
+
+
+  $('body').append("\n   <div id=\"modal1\" class=\"modal bottom-sheet\">\n    <div class=\"modal-content\">\n      <h4>Modal Header</h4>\n      <p>A bunch of text</p>\n    </div>\n    <div class=\"modal-footer\">\n      <a href=\"#!\" class=\"modal-action modal-close waves-effect waves-green btn-flat\">Agree</a>\n    </div>\n  </div>\n  ");
+
+  $('#modal1').modal('open');
 })();
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -23761,6 +23769,29 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /***/ })
 /******/ ]);

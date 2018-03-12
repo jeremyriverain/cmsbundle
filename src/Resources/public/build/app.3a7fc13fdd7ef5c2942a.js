@@ -10558,6 +10558,7 @@ __webpack_require__(36);
 __webpack_require__(37);
 __webpack_require__(38);
 __webpack_require__(2);
+__webpack_require__(56);
 
 // collection
 
@@ -23761,6 +23762,36 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {
+
+$(document).ready(function () {
+  $('body').append('\n   <div id="modal1" class="modal bottom-sheet">\n    <div class="modal-content">\n      <h4>Modal Header</h4>\n      <p>A bunch of text</p>\n    </div>\n    <div class="modal-footer">\n      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>\n    </div>\n  </div>\n  ');
+
+  $('#modal1').modal('open');
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);
