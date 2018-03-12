@@ -1,6 +1,8 @@
 Warning
 =======
 
+test
+
 This project is not stable at all. In fact, the bundle is very helpful in my proper workflow, to build websites faster. It extracts my own logic when I build some admin dashboard and it is very opinionated and probably not convenient for your usage. Despite this warning, if you want to use it anyway, copy it and make your own bundle based on that!
 
 Installation
