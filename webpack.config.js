@@ -82,7 +82,7 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       minimize: inProduction
     }),
-    new CleanWebpackPlugin(['public/build'], {
+    new CleanWebpackPlugin(['src/Resources/public/build'], {
       root: __dirname,
       verbose: true,
       dry: false
