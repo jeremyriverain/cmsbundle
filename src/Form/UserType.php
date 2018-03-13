@@ -31,7 +31,7 @@ class UserType extends AbstractType
                 ;
 
         }
-        else if (in_array('edit', $options['validation_groups'])) {
+        else {
             $builder
                 ->add('plainPassword', RepeatedType::class, array(
                     'required' => false,
@@ -48,7 +48,6 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => User::class,
-            'validation_groups' => array('registration'),
         ));
     }
 }

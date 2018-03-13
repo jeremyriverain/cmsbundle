@@ -49,7 +49,9 @@ class AdministrateurController extends Controller
     {
         $user = new User();
 
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $user, [ 
+           'validation_groups' => array('User', 'registration'), 
+        ]);
 
         $form->handleRequest($request);
 
@@ -85,7 +87,7 @@ class AdministrateurController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $form = $this->createForm(UserType::class, $user, [
-           'validation_groups' => array('edit'), 
+           'validation_groups' => array('User'), 
         ]);
 
         $form->handleRequest($request);
