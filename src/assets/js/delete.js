@@ -1,6 +1,6 @@
 import getLoader from './loader';
 import {createModal} from './modal';
-import {updateInstances} from './ckeditor';
+//import {updateInstances} from './ckeditor';
 
 var failMsg = "Impossible d'effectuer la suppression";
 
@@ -36,7 +36,7 @@ var $delete = function(url, id, namespace) {
 
     $(`#${id}`).on('click', '.modal-action.confirm', function(){
       if($('.textarea-ckeditor.html').length) {
-        updateInstances();
+        //updateInstances();
       }
 
       let url = $(item).attr('data-url');
