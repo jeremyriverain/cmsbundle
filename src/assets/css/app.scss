@@ -43,9 +43,12 @@
 @import "~materialize-css/sass/components/date_picker/default.date";
 @import "~materialize-css/sass/components/date_picker/default.time";
 
+@import url('~ck5-custom-build/build/styles.css');
+
 @import "breadcrumb";
 @import "colorpicker";
 @import "chips";
+@import "ckeditor";
 @import "flash";
 @import "layout";
 @import "nav";

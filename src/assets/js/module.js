@@ -1,5 +1,5 @@
 import getLoader from './loader';
-//import {updateInstances} from './ckeditor';
+import {updateInstances} from './ckeditor';
 
 (function(){
 "use strict";  
@@ -14,7 +14,7 @@ import getLoader from './loader';
       ev.preventDefault();
 
       if($('.textarea-ckeditor.html').length) {
-      //updateInstances();
+      updateInstances();
       }
 
 

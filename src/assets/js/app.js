@@ -39,7 +39,7 @@ require('./delete');
 require('./page');
 require('./propertyUpdater.js');
 require('./module.js');
-require('./editor.js');
+require('./ckeditor.js');
 require('./modal.js');
 
 // collection
