@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Geekco\CmsBundle\Entity\StringResource;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class StringResourceBaseType extends AbstractType
 {
@@ -16,8 +17,16 @@ class StringResourceBaseType extends AbstractType
     {
         $builder
             ->add('label')
+            ->add('constraints', ChoiceType::class, [
+                'multiple' => true,
+                'required' => false,
+                'choices'  => array(
+                    'Url' => 'Url',
+                    'NotBlank' => 'NotBlank',
+                ),
+            ])
             ->add('value')
-                    ;
+            ;
     }
 
     /**
