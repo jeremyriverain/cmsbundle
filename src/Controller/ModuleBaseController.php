@@ -9,6 +9,7 @@ use Geekco\CmsBundle\Entity\Module;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Geekco\CmsBundle\Form\ModuleBaseType;
 
 /**
  * @Route("/admin/module-de-base")
@@ -22,33 +23,63 @@ class ModuleBaseController extends Controller
     public function listAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $modules = $em->getRepository(Module::class)->findBy([
-            'isBase' => true
-        ]);
+        $modules = $em->getRepository(Module::class)->findBy([ 'isBase' => true ], ['id' => 'DESC']);
         return $this->render('@GeekcoCms/modules-de-base/index.html.twig', [
             'modules' => $modules
         ]);
     }
-   
+
     /**
      * @Route("/new", name="geekco_cms_modulebase_new")
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
-        die;
+        $module = new Module();
+        $module->setIsBase(true);
+
+        $form = $this->createForm(ModuleBaseType::class, $module);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($module);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', "<i class='material-icons'>check</i> Le module a été créé");
+            return $this->redirectToRoute("geekco_cms_modulebase_list");
+        }
+
+        return $this->render('@GeekcoCms/modules-de-base/new.html.twig', [
+            'form' => $form->createView()
+        ]);
+
     }
-   
+
     /**
      * @Route("/update/{id}", name="geekco_cms_modulebase_update")
      */
-    public function updateAction(Module $module)
+    public function updateAction(Module $module, Request $request)
     {
         if ($module->getIsBase() !== true )
         {
             throw new AccessDeniedException("Ce module n'est pas un module de base.");
 
         }
-        die;
+        $form = $this->createForm(ModuleBaseType::class, $module);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', "<i class='material-icons'>check</i> Modifications enregistrées");
+            $referer = $request->headers->get('referer');
+            return $this->redirect($referer);
+        }
+
+        return $this->render('@GeekcoCms/modules-de-base/update.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
 }

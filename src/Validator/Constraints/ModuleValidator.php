@@ -18,6 +18,16 @@ class ModuleValidator extends ConstraintValidator
                 ->atPath('name')
                 ->addViolation();
         }
+
+        if ($protocol->getParent() === null && $protocol->getLabel() === null)
+        {
+
+            $this->context
+                ->buildViolation($constraint->labelNotFilled)
+                ->atPath('label')
+                ->addViolation();
+                
+        }
     }
 
 }

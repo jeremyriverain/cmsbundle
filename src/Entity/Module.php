@@ -10,6 +10,7 @@ use Geekco\CmsBundle\Entity\Module;
 use Geekco\CmsBundle\Entity\Resource;
 use Geekco\CmsBundle\Entity\Page;
 use Geekco\CmsBundle\Traits\PositionableEntity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Module
@@ -17,6 +18,8 @@ use Geekco\CmsBundle\Traits\PositionableEntity;
  * @ORM\Table(name="module")
  * @ORM\Entity(repositoryClass="Geekco\CmsBundle\Repository\ModuleRepository")
  * @GeekcoAssert\Module
+ * @UniqueEntity({"name", "isBase"}, repositoryMethod="findByUniqueCriteria")
+ *
  */
 class Module
 {

@@ -31,7 +31,7 @@ class Resource
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="StringResource", cascade={"persist", "remove"}, mappedBy="resource")
+     * @ORM\OneToMany(targetEntity="StringResource", cascade={"persist", "remove"}, mappedBy="resource", orphanRemoval=true)
      * @Assert\Valid()
      */
     private $stringResources;
@@ -140,6 +140,7 @@ class Resource
     public function removeStringResource(StringResource $stringResource)
     {
         $this->stringResources->removeElement($stringResource);
+        $stringResource->setResource(null);
     }
 
     /**

@@ -1,6 +1,5 @@
-bouton vidéo éditeur de texte
-videoupload => conversion im mp4, ogg (only format possible for now) and placeholder img
-
+vue for handle collection
+material design lite => to replace jquery
 svg processing for reducing file size for this format
 test unitaire avec php unit (see best practices for reusable bundles), and/or behat ?
 continuous integration with travis ?

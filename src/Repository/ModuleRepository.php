@@ -13,16 +13,19 @@ class ModuleRepository extends ServiceEntityRepository
         parent::__construct($registry, Module::class);
     }
 
-    /*
-    public function findBySomething($value)
+    
+    public function findByUniqueCriteria($array)
     {
+        if ($array['isBase'] === false)
+        {
+            return [];
+        }
         return $this->createQueryBuilder('d')
-            ->where('d.something = :value')->setParameter('value', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
+            ->where('d.name = :value')->setParameter('value', $array['name'])
+            ->andwhere('d.isBase = :isBase')->setParameter('isBase', $array['isBase'])
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 }

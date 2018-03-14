@@ -21,7 +21,7 @@
 {% macro new_icon(path, legend) %}
 <a href="{{path}}" 
    {% if legend is not null %}
-       data-position="bottom" data-delay="50" data-tooltip="{{legend}}" class="tooltipped mt-1 btn-floating waves-effect waves-light light-green accent-2 right "
+       data-position="top" data-delay="50" data-tooltip="{{legend}}" class="tooltipped mt-1 btn-floating waves-effect waves-light light-green accent-2 right "
    {% else%}
        class=" mt-1 btn-floating waves-effect waves-light light-green accent-2 right "
    {% endif %}
