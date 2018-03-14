@@ -1,0 +1,40 @@
+{% extends('@GeekcoCms/base.html.twig') %}
+
+{% import "@GeekcoCms/macros.html.twig" as macros %}
+
+{% block body %}
+
+	<div class="container">
+		<div class="row">
+
+			<h1 class="center-align ">Liste des administrateurs</h1>
+			<table class="responsive-table">
+				<thead>
+					<tr>
+						<th>Nom</th>
+                        <th>Label</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for e in modules %}					
+						<tr>
+							<td>{{e.name}}</td>
+							<td>{{e.label}}</td>
+							<td> 
+                                {{macros.edit_icon(path('geekco_cms_modulebase_update', {'id': e.id}), 'Modifier le module')}}
+                                {{ macros.delete_icon('Geekco\\CmsBundle\\Entity\\Module', e.id, 'Supprimer le module') }}
+							</td>
+						</tr>
+					{% endfor %}
+
+				</tbody>
+			</table>
+            
+            {{ macros.new_icon(path('geekco_cms_modulebase_new'), 'Nouveau module') }}
+
+		</div>
+	</div>
+
+{% endblock %}
