@@ -29,9 +29,7 @@ class UserType extends AbstractType
                     'second_options' => array('label' => 'Confirmer le mot de passe'),
                 ))
                 ;
-
-        }
-        else {
+        } else {
             $builder
                 ->add('plainPassword', RepeatedType::class, array(
                     'required' => false,
@@ -40,7 +38,6 @@ class UserType extends AbstractType
                     'second_options' => array('label' => 'Confirmer le mot de passe'),
                 ))
                 ;
-
         }
     }
 

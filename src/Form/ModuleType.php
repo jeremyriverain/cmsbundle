@@ -19,7 +19,6 @@ class ModuleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
             ->add('resource', ResourceType::class, ['label' => false])
             ->add('children', CollectionType::class, [
@@ -37,7 +36,6 @@ class ModuleType extends AbstractType
             ])
 
             ;
-
     }
 
     /**
@@ -57,6 +55,4 @@ class ModuleType extends AbstractType
     {
         return 'appbundle_module';
     }
-
-
 }

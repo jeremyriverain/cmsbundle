@@ -16,7 +16,7 @@ class ResourceListener
     public function __construct(ResourceTransformer $resourceTransformer)
     {
         $this->resourceTransformer = $resourceTransformer;
-    } 
+    }
 
     private function setCompoundValue(LifecycleEventArgs $args, Resource $entity)
     {
@@ -36,7 +36,6 @@ class ResourceListener
         $this->setCompoundValue($args, $entity);
         $em = $args->getEntityManager();
         $em->flush();
-
     }
 
     public function prePersist(LifecycleEventArgs $args)
@@ -48,11 +47,10 @@ class ResourceListener
         }
 
         $changeSet = $args->getEntityManager()->getUnitOfWork()->getEntityChangeSet($entity);
-        if(array_key_exists("compoundValue", $changeSet)){ 
+        if (array_key_exists("compoundValue", $changeSet)) {
             return;
         }
 
         $this->setCompoundValue($args, $entity);
-
     }
 }

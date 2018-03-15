@@ -27,9 +27,8 @@ class MenuController extends Controller
         $em = $this->getDoctrine()->getManager();
         $pages = $em->getRepository(Page::class)->findAll();
 
-        if($form->isSubmitted())
-        {
-            if($form->isValid()){
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
                 $request->getSession()->getFlashBag()->add('success', 'Les changements ont été enregistrés.');
@@ -43,5 +42,4 @@ class MenuController extends Controller
             'pages' => $pages
         ]);
     }
-
 }

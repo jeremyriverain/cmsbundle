@@ -14,12 +14,9 @@ class PageResourceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
-
-
-        $builder->addEventListener(FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($builder)
-            {
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($builder) {
                 $form = $event->getForm();
                 $child = $event->getData();
 
@@ -33,9 +30,7 @@ class PageResourceType extends AbstractType
                             'required' => true,
                             'placeholder' => 'Choisir une page'
                         ])
-                        ;             
-
-
+                        ;
                 }
             }
         );

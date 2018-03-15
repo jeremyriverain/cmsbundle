@@ -17,16 +17,16 @@ class TextResourceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($builder)
-            {
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($builder) {
                 $form = $event->getForm();
                 $child = $event->getData();
 
 
                 if ($child instanceof TextResource) {
                     $child->getLabel() !== null ? $label = $child->getLabel() : $label = $child->getName();
-                    if($child->getIsHtml() === false){
+                    if ($child->getIsHtml() === false) {
                         $form
                             ->add('value', null, [
                                 'label' => $label,
@@ -35,9 +35,7 @@ class TextResourceType extends AbstractType
                                 ]
                             ])
                             ;
-                    }
-                    else 
-                    {
+                    } else {
                         $form->add('value', null, [
                             'label' => $label,
                             'attr' => [
@@ -45,9 +43,7 @@ class TextResourceType extends AbstractType
                             ],
                         ])
                         ;
-
                     }
-
                 }
             }
         );
@@ -70,6 +66,4 @@ class TextResourceType extends AbstractType
     {
         return 'appbundle_textresource';
     }
-
-
 }

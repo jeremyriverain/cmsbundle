@@ -40,8 +40,7 @@ class ModuleBaseController extends Controller
         $form = $this->createForm(ModuleBaseType::class, $module);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($module);
             $em->flush();
@@ -52,7 +51,6 @@ class ModuleBaseController extends Controller
         return $this->render('@GeekcoCms/modules-de-base/new.html.twig', [
             'form' => $form->createView()
         ]);
-
     }
 
     /**
@@ -60,16 +58,13 @@ class ModuleBaseController extends Controller
      */
     public function updateAction(Module $module, Request $request)
     {
-        if ($module->getIsBase() !== true )
-        {
+        if ($module->getIsBase() !== true) {
             throw new AccessDeniedException("Ce module n'est pas un module de base.");
-
         }
         $form = $this->createForm(ModuleBaseType::class, $module);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             $request->getSession()->getFlashBag()->add('success', "<i class='material-icons'>check</i> Modifications enregistrées");
@@ -81,6 +76,4 @@ class ModuleBaseController extends Controller
             'form' => $form->createView()
         ]);
     }
-
 }
-

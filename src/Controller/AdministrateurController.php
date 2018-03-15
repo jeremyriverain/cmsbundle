@@ -28,9 +28,8 @@ class AdministrateurController extends Controller
 
         $admins = [];
 
-        foreach ($users as $u)
-        {
-            if(in_array(strtoupper('ROLE_ADMIN'), $u->getRoles(), true)) {
+        foreach ($users as $u) {
+            if (in_array(strtoupper('ROLE_ADMIN'), $u->getRoles(), true)) {
                 $admins[] = $u;
             }
         }
@@ -38,7 +37,6 @@ class AdministrateurController extends Controller
         return $this->render('@GeekcoCms/admin_user/list.html.twig', [
             'admins' => $admins
         ]);
-
     }
 
     /**
@@ -49,14 +47,13 @@ class AdministrateurController extends Controller
     {
         $user = new User();
 
-        $form = $this->createForm(UserType::class, $user, [ 
-           'validation_groups' => array('User', 'registration'), 
+        $form = $this->createForm(UserType::class, $user, [
+           'validation_groups' => array('User', 'registration'),
         ]);
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $plainPassword = $user->getPlainPassword();
             $encoded = $encoder->encodePassword($user, $plainPassword);
             $user->setPassword($encoded);
@@ -72,9 +69,6 @@ class AdministrateurController extends Controller
         return $this->render('@GeekcoCms/admin_user/new.html.twig', [
             'form' => $form->createView()
         ]);
-
-
-
     }
 
     /**
@@ -83,26 +77,22 @@ class AdministrateurController extends Controller
      */
     public function updateAction(Request $request, UserPasswordEncoderInterface $encoder, User $user)
     {
-
         $em = $this->getDoctrine()->getManager();
         
         $form = $this->createForm(UserType::class, $user, [
-           'validation_groups' => array('User'), 
+           'validation_groups' => array('User'),
         ]);
 
         $form->handleRequest($request);
 
         $plainPassword = $user->getPlainPassword();
 
-        if (null !== $plainPassword)
-        {
+        if (null !== $plainPassword) {
             $encoded = $encoder->encodePassword($user, $plainPassword);
             $user->setPassword($encoded);
         }
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
-
+        if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
             $request->getSession()->getFlashBag()->add('success', 'Votre profil a été modifié');
             return $this->redirectToRoute("geekco_cms_administrateur_list");
@@ -111,8 +101,5 @@ class AdministrateurController extends Controller
         return $this->render('@GeekcoCms/admin_user/update.html.twig', [
             'form' => $form->createView()
         ]);
-
-
     }
-
 }

@@ -11,7 +11,6 @@ class ImageResourceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
             // ...
             ->add('imageFile', FileType::class, [

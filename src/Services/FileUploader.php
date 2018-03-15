@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class FileUploader
 {
-
     private $targetDir;
 
     public function __construct($targetDir)
@@ -27,5 +26,4 @@ class FileUploader
     {
         return $this->targetDir;
     }
-
 }

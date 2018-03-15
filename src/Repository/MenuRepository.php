@@ -23,7 +23,5 @@ class MenuRepository extends ServiceEntityRepository
             ->setParameter('name', $name)
                         ;
         return $qb->getQuery()->getOneOrNullResult();
-        
     }
-
 }

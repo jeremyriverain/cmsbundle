@@ -16,7 +16,6 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CreateAdminCommand extends Command
 {
-
     private $em;
 
     private $passwordEncoder;
@@ -25,13 +24,11 @@ class CreateAdminCommand extends Command
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder, EntityManagerInterface $em, ValidatorInterface $validator)
     {
-
         $this->em = $em;
         $this->passwordEncoder = $passwordEncoder;
         $this->validator = $validator;
 
         parent::__construct();
-
     }
 
     protected function configure()
@@ -53,7 +50,6 @@ class CreateAdminCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
         $user = new User();
 
         $username = $input->getArgument('username');
@@ -71,9 +67,7 @@ class CreateAdminCommand extends Command
 
         if ($is_super_admin) {
             $user->setRoles(array('ROLE_USER', 'ROLE_SUPER_ADMIN'));
-        }
-        else
-        { 
+        } else {
             $user->setRoles(array('ROLE_USER', 'ROLE_ADMIN'));
         }
 
@@ -126,4 +120,3 @@ class CreateAdminCommand extends Command
         }
     }
 }
-

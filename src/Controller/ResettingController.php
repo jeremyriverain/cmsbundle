@@ -32,27 +32,21 @@ class ResettingController extends Controller
               'constraints' => [
                   new Email(),
                   new NotBlank()
-              ] 
+              ]
             ])
             ->getForm();
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $user = $em->getRepository(User::class)->loadUserByUsername($form->getData()['email']);
-            if (!$user)
-            {
+            if (!$user) {
                 $request->getSession()->getFlashBag()->add('error', "Cet email n'est pas enregistré en base.");
                 return $this->redirectToRoute("geekco_cms_resetting_request");
-            }
-            elseif($user->getPasswordRequestedAt() !== null)
-            {
+            } elseif ($user->getPasswordRequestedAt() !== null) {
                 $request->getSession()->getFlashBag()->add('error', "Vous avez déjà demandé un token. Consultez votre boîte mail. Si vous ne l'avez pas reçu, consultez vos spams au cas où il aurait été traité comme un indésirable.");
                 return $this->redirectToRoute("geekco_cms_connexion");
-            }
-            else
-            {
+            } else {
                 $user->setToken($tokenGenerator->generateToken());
                 $user->setPasswordRequestedAt(new \Datetime());
                 $em->flush();
@@ -76,9 +70,8 @@ class ResettingController extends Controller
 
     private function isRequestInTime(\Datetime $passwordRequestedAt = null)
     {
-        if ($passwordRequestedAt === null)
-        {
-            return false;        
+        if ($passwordRequestedAt === null) {
+            return false;
         }
 
         $now = new \DateTime();
@@ -94,16 +87,14 @@ class ResettingController extends Controller
      */
     public function resetting(User $user, $token, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        if ($token !== $user->getToken() || !$this->isRequestInTime($user->getPasswordRequestedAt()))
-        {
+        if ($token !== $user->getToken() || !$this->isRequestInTime($user->getPasswordRequestedAt())) {
             throw new AccessDeniedHttpException();
         }
 
         $form = $this->createForm(UserResettingType::class, $user);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
 
@@ -117,12 +108,10 @@ class ResettingController extends Controller
             $request->getSession()->getFlashBag()->add('success', "Votre mot de passe a été enregistré.");
 
             return $this->redirectToRoute('geekco_cms_connexion');
-
         }
 
         return $this->render('@GeekcoCms/resetting/index.html.twig', [
             'form' => $form->createView()
         ]);
-
     }
 }

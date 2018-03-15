@@ -17,7 +17,6 @@ use Geekco\CmsBundle\Entity\Page;
  */
 class PageResource implements ResourceInterface
 {
-
     use LabelableEntity;
 
     /**
@@ -111,12 +110,9 @@ class PageResource implements ResourceInterface
     public function setPage(Page $page = null)
     {
         $this->page = $page;
-        if ($page !== null)
-        {
+        if ($page !== null) {
             $this->value = $page->getId();
-        }
-        else
-        {
+        } else {
             $this->value = null;
         }
         return $this;
@@ -133,6 +129,4 @@ class PageResource implements ResourceInterface
     {
         return $this->resource;
     }
-
-
 }

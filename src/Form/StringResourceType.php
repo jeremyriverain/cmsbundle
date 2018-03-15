@@ -16,9 +16,9 @@ class StringResourceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($builder)
-            {
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($builder) {
                 $form = $event->getForm();
                 $child = $event->getData();
 
@@ -28,10 +28,8 @@ class StringResourceType extends AbstractType
 
                     $constraints = [];
                     
-                    if(!empty($child->getConstraints()))
-                    {
-                        foreach ($child->getConstraints() as $constraint)
-                        { 
+                    if (!empty($child->getConstraints())) {
+                        foreach ($child->getConstraints() as $constraint) {
                             $compound = "Symfony\\Component\\Validator\\Constraints\\".$constraint;
                             $constraints[] = new $compound();
                         }
@@ -44,7 +42,6 @@ class StringResourceType extends AbstractType
                         ],
                         'constraints' => $constraints
                     ]);
-
                 }
             }
         );
@@ -67,6 +64,4 @@ class StringResourceType extends AbstractType
     {
         return 'appbundle_stringresource';
     }
-
-
 }

@@ -39,6 +39,4 @@ class MenuItemType extends AbstractType
     {
         return 'appbundle_menuitem';
     }
-
-
 }

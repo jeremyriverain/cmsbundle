@@ -46,6 +46,4 @@ class StringResourceBaseType extends AbstractType
     {
         return 'geekcocmsbundle_stringresourcebase';
     }
-
-
 }

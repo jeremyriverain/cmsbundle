@@ -9,8 +9,7 @@ class ImageResourceValidator extends ConstraintValidator
 {
     public function validate($protocol, Constraint $constraint)
     {
-        if($protocol->getImageFile() === null && $protocol->getImage() === null)
-        {
+        if ($protocol->getImageFile() === null && $protocol->getImage() === null) {
             return $this->context
                 ->buildViolation($constraint->message)
                 ->atPath('imageFile')

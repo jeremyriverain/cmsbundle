@@ -24,8 +24,7 @@ class ModuleController extends Controller
      */
     public function cloneChildModule(Request $request, ModuleManager $moduleManager)
     {
-        if (!$request->isXmlHttpRequest())
-        {
+        if (!$request->isXmlHttpRequest()) {
             throw new NotFoundHttpException();
         }
 
@@ -37,8 +36,8 @@ class ModuleController extends Controller
 
         $original = $em->getRepository(Module::class)->find($request->request->get('original'));
 
-        if($module && $original){
-            if(!$module->getChildren()->isEmpty()){
+        if ($module && $original) {
+            if (!$module->getChildren()->isEmpty()) {
                 $child = $module->getChildren()->first();
 
                 $newChild = $moduleManager->copy($child);
@@ -58,7 +57,6 @@ class ModuleController extends Controller
         return new JsonResponse([
             'success' => false,
         ]);
-
     }
 
     /**
@@ -71,25 +69,21 @@ class ModuleController extends Controller
         $form = $this->createForm(ModuleType::class, $module);
         $form->handleRequest($request);
 
-        if($form->isSubmitted()){
-            if($form->isValid())
-            {
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
                 $resource = $module->getResource();
                 $resource->setUpdatedAt(new \Datetime('now'));
 
-                if (!$module->getChildren()->isEmpty())
-                {
-                    foreach ($module->getChildren() as $childModule)
-                    {
+                if (!$module->getChildren()->isEmpty()) {
+                    foreach ($module->getChildren() as $childModule) {
                         $childResource = $childModule->getResource();
                         $childResource->setUpdatedAt(new \Datetime('now'));
                     }
                 }
 
                 $em->flush();
-                $request->getSession()->getFlashBag()->add('success',"Les changements ont été enregistrés.");
-                if ($request->isXmlHttpRequest())
-                {
+                $request->getSession()->getFlashBag()->add('success', "Les changements ont été enregistrés.");
+                if ($request->isXmlHttpRequest()) {
                     return new JsonResponse([
                         'success' => true
                     ]);
@@ -104,8 +98,4 @@ class ModuleController extends Controller
             'page' => $module->getPage()
         ]);
     }
-
-
 }
-
-

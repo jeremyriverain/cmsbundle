@@ -6,7 +6,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-
 /**
  * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="Geekco\CmsBundle\Repository\UserRepository")
@@ -53,7 +52,7 @@ class User implements UserInterface, \Serializable
      */
     private $roles;
 
-	/**
+    /**
      * @Assert\Length(max=4096)
      * @Assert\NotBlank(groups={"registration"})
      *
@@ -155,18 +154,16 @@ class User implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return $this->roles; 
+        return $this->roles;
     }
 
     public function setRoles(array $roles)
     {
-        if (!in_array('ROLE_USER', $roles))
-        {
+        if (!in_array('ROLE_USER', $roles)) {
             $roles[] = 'ROLE_USER';
         }
-        foreach ($roles as $role)
-        {
-            if(substr($role, 0, 5) !== 'ROLE_') {
+        foreach ($roles as $role) {
+            if (substr($role, 0, 5) !== 'ROLE_') {
                 throw new InvalidArgumentException("Chaque rôle doit commencer par 'ROLE_'");
             }
         }
@@ -205,7 +202,7 @@ class User implements UserInterface, \Serializable
     /** @see \Serializable::unserialize() */
     public function unserialize($serialized)
     {
-        list (
+        list(
             $this->id,
             $this->username,
             $this->password,
@@ -251,9 +248,5 @@ class User implements UserInterface, \Serializable
     
     public function eraseCredentials()
     {
-        
     }
-
-    
 }
-	

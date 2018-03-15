@@ -8,7 +8,6 @@ use \Gumlet\ImageResize;
 
 class ImageManager
 {
-
     private $uploader;
 
     public function __construct(FileUploader $uploader)
@@ -60,22 +59,17 @@ class ImageManager
 
     public function applyFilters(ImageResource $entity)
     {
-        if(file_exists($this->uploader->getTargetDir()."/".$entity->getImage())) {
+        if (file_exists($this->uploader->getTargetDir()."/".$entity->getImage())) {
             try {
-                if(getimagesize($this->uploader->getTargetDir()."/".$entity->getImage())) {
+                if (getimagesize($this->uploader->getTargetDir()."/".$entity->getImage())) {
                     $image = new ImageResize($this->uploader->getTargetDir()."/".$entity->getImage());
-                    foreach ($this->getScaleFilters() as $f)
-                    {
+                    foreach ($this->getScaleFilters() as $f) {
                         $image->resizeToWidth($f['width']);
                         $image->save($this->uploader->getTargetDir()."/".$f['prefix'].$entity->getImage());
                     }
                 }
-
+            } catch (\Throwable $e) {
             }
-            catch (\Throwable $e) {
-
-            }
-
         }
     }
 }

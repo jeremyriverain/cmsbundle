@@ -13,50 +13,45 @@ use Geekco\CmsBundle\Entity\Module;
 
 class ModuleBaseType extends AbstractType
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function buildForm(FormBuilderInterface $builder, array $options)
-	{
-
-		$builder
-			->add('label')
-			->add('pathThemeRelative')
-			->add('onlyOne', null)
+    /**
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('label')
+            ->add('pathThemeRelative')
+            ->add('onlyOne', null)
             ->add('resource', ResourceBaseType::class, [
             'label' => false
             ])
-			;
+            ;
 
-		$builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-			$module = $event->getData();
-			$form = $event->getForm();
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $module = $event->getData();
+            $form = $event->getForm();
 
-			if (!$module || null === $module->getId()) {
-				$form->add('name');
-			}
-		});
+            if (!$module || null === $module->getId()) {
+                $form->add('name');
+            }
+        });
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => Module::class,
+        ));
+    }
 
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function configureOptions(OptionsResolver $resolver)
-	{
-		$resolver->setDefaults(array(
-			'data_class' => Module::class,
-		));
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getBlockPrefix()
-	{
-		return 'geekcocmsbundle_modulebase';
-	}
-
-
+    /**
+     * {@inheritdoc}
+     */
+    public function getBlockPrefix()
+    {
+        return 'geekcocmsbundle_modulebase';
+    }
 }

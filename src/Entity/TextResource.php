@@ -15,7 +15,6 @@ use Geekco\CmsBundle\Interfaces\ResourceInterface;
  */
 class TextResource implements ResourceInterface
 {
-
     use LabelableEntity;
 
     /**

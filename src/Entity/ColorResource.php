@@ -16,7 +16,6 @@ use Geekco\CmsBundle\Entity\Resource;
  */
 class ColorResource implements ResourceInterface
 {
-
     use LabelableEntity;
 
     /**

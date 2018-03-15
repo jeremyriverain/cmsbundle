@@ -14,18 +14,17 @@ class SecurityController extends Controller
     /**
      * @Route("/connexion", name="geekco_cms_connexion")
      */
-	public function login(Request $request, AuthenticationUtils $authUtils)
-	{
-		// get the login error if there is one
-		$error = $authUtils->getLastAuthenticationError();
+    public function login(Request $request, AuthenticationUtils $authUtils)
+    {
+        // get the login error if there is one
+        $error = $authUtils->getLastAuthenticationError();
 
-		// last username entered by the user
-		$lastUsername = $authUtils->getLastUsername();
+        // last username entered by the user
+        $lastUsername = $authUtils->getLastUsername();
 
-		return $this->render('@GeekcoCms/security/login.html.twig', array(
-			'last_username' => $lastUsername,
-			'error'         => $error,
-		));
-	}
-
+        return $this->render('@GeekcoCms/security/login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
+    }
 }

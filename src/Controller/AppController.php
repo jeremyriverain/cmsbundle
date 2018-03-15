@@ -11,35 +11,27 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AppController extends Controller
 {
-
     private function renderAction(Request $request, $slug = null)
     {
         $em = $this->getDoctrine()->getManager();
 
-        if($slug === null)
-        {
+        if ($slug === null) {
             $page = $em->getRepository(Page::class)->getPageWithModules('accueil');
-            if (!$page)
-            {
+            if (!$page) {
                 return $this->render('@GeekcoCms/no-homepage.html.twig', [
                         
                 ]);
             }
-        }
-        else
-        {
+        } else {
             $page = $em->getRepository(Page::class)->getPageWithModules($slug);
         }
 
-        if (!$page)
-        {
-             throw new NotFoundHttpException();
+        if (!$page) {
+            throw new NotFoundHttpException();
         }
 
-        foreach ($page->getModules() as $m)
-        {
-            if($m->getHasForm() === true)
-            {
+        foreach ($page->getModules() as $m) {
+            if ($m->getHasForm() === true) {
                 $entityNamespace = $m->getOptions()['form']['entity_namespace'];
                 $formNamespace = $m->getOptions()['form']['form_namespace'];
 
@@ -51,21 +43,17 @@ class AppController extends Controller
 
                 $form = $this->createForm($formNamespace, $entity);
                 $form->handleRequest($request);
-                if($form->isSubmitted()) {
-                    if( $form->isValid())
-                    {
+                if ($form->isSubmitted()) {
+                    if ($form->isValid()) {
                         $formTypeHandling->onSuccess($entity);
                         return $this->redirectToRoute('geekco_cms_homepage');
                     }
                 }
-
-
             }
         }
 
         $options = ['page' => $page];
-        if(isset($form))
-        {
+        if (isset($form)) {
             $options['form'] = $form->createView();
         }
 
@@ -84,15 +72,10 @@ class AppController extends Controller
      * @Route("/page/{slug}", defaults={"slug" = "accueil"}, name="geekco_cms_index")
      */
     public function indexAction($slug, Request $request)
-    {   
-        if($slug === "accueil") {
+    {
+        if ($slug === "accueil") {
             return $this->redirectToRoute("geekco_cms_homepage");
         }
         return $this->renderAction($request, $slug);
-
     }
-
-
 }
-
-

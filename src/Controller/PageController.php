@@ -31,21 +31,17 @@ class PageController extends Controller
 
         $filterResponse = $filterManager->validate(Page::class, $request->get('orderby'), $request->get('direction'));
 
-        if($filterResponse['success'] === true)
-        {
+        if ($filterResponse['success'] === true) {
             $pages = $em->getRepository(Page::class)->findBy([], [
                 $filterResponse['orderby'] => $filterResponse['direction']
             ]);
-        }
-        else
-        {
+        } else {
             $pages = $em->getRepository(Page::class)->findAll();
         }
         return $this->render('@GeekcoCms/page/list.html.twig', [
             'pages' => $pages,
             'filterResponse' => $filterResponse,
         ]);
-
     }
 
     /**
@@ -58,8 +54,7 @@ class PageController extends Controller
         $form = $this->createForm(PageType::class, $page);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($page);
             $em->flush();
@@ -73,7 +68,6 @@ class PageController extends Controller
         return $this->render('@GeekcoCms/page/new.html.twig', [
             'form' => $form->createView()
         ]);
-
     }
 
     /**
@@ -82,9 +76,8 @@ class PageController extends Controller
      */
     public function updateTitle(Request $request, Page $page, ValidatorInterface $validator)
     {
-        if ($request->isXmlHttpRequest())
-        {
-            if($page->getSlug() === 'accueil') {
+        if ($request->isXmlHttpRequest()) {
+            if ($page->getSlug() === 'accueil') {
                 throw new NotFoundHttpException();
             }
 
@@ -95,14 +88,13 @@ class PageController extends Controller
 
             if (count($errors) > 0) {
                 $array = [];
-                foreach ($errors as $e)
-                {
+                foreach ($errors as $e) {
                     $array[] = $e->getMessage();
                 }
 
                 return new JsonResponse([
                     'errors' => $array,
-                    'success' => false  
+                    'success' => false
                 ]);
             }
 
@@ -112,10 +104,7 @@ class PageController extends Controller
             return new JsonResponse([
                 'success' => true
             ]);
-
-        }
-        else
-        {
+        } else {
             throw new NotFoundHttpException();
         }
     }
@@ -130,7 +119,7 @@ class PageController extends Controller
 
         $modules = $em->getRepository(Module::class)->findBy(['page' => $page], ['position' => 'ASC']);
 
-        $pages = $em->getRepository(Page::class)->findBy([],['name' =>  'ASC']);
+        $pages = $em->getRepository(Page::class)->findBy([], ['name' =>  'ASC']);
 
         $bases = $moduleManager->getPotentialModules($page);
 
@@ -147,26 +136,23 @@ class PageController extends Controller
      */
     public function addModule(Request $request, ModuleManager $moduleManager)
     {
-        if (!$request->isXmlHttpRequest())
-        {
+        if (!$request->isXmlHttpRequest()) {
             throw new NotFoundHttpException();
         }
 
         $em = $this->getDoctrine()->getManager();
         $page = $em->getRepository(Page::class)->find($request->request->get('pageId'));
         $module = $em->getRepository(Module::class)->find($request->request->get('moduleId'));
-        if (!$page || !$module)
-        {
+        if (!$page || !$module) {
             throw new NotFoundHttpException();
         }
 
-        if ($module->getDeletable() === false)
-        {
+        if ($module->getDeletable() === false) {
             throw new \Exception("Le module ne pouvant pas être supprimé, il ne peut pas non plus être dupliqué!");
         }
 
         $newModule = $moduleManager->addModuleToPage($module, $page);
-        if($newModule instanceof Module) {
+        if ($newModule instanceof Module) {
             $em->persist($newModule);
             $em->flush();
 
@@ -174,16 +160,12 @@ class PageController extends Controller
             return new JsonResponse([
                 'success' => true,
             ]);
-        }
-
-        else
-        {
+        } else {
             return new JsonResponse([
                 'success' => false,
                 'message' => $newModule
             ]);
         }
-
     }
 
     /**
@@ -191,14 +173,12 @@ class PageController extends Controller
      */
     public function getTags(Page $page, Request $request)
     {
-        if (!$request->isXmlHttpRequest())
-        {
+        if (!$request->isXmlHttpRequest()) {
             throw new NotFoundHttpException();
         }
         $tags = $page->getTags();
         $reponse = [];
-        foreach ($tags as $t)
-        {
+        foreach ($tags as $t) {
             $reponse[] = $t->getValue();
         }
         return new JsonResponse($reponse);
@@ -210,8 +190,7 @@ class PageController extends Controller
      */
     public function addTag(Request $request, Page $page)
     {
-        if (!$request->isXmlHttpRequest())
-        {
+        if (!$request->isXmlHttpRequest()) {
             throw new NotFoundHttpException();
         }
         $em = $this->getDoctrine()->getManager();
@@ -219,8 +198,7 @@ class PageController extends Controller
             'categorie' => 'page',
             'value' => $request->request->get('value')
         ]);
-        if (!$tag)
-        {
+        if (!$tag) {
             $tag = new Tag();
             $tag->setValue($request->request->get('value'));
             $tag->setCategorie('page');
@@ -233,8 +211,6 @@ class PageController extends Controller
         return new JsonResponse([
             'success' => true
         ]);
-
-
     }
 
     /**
@@ -243,34 +219,25 @@ class PageController extends Controller
      */
     public function removeTag(Request $request, Page $page)
     {
-        if (!$request->isXmlHttpRequest())
-        {
+        if (!$request->isXmlHttpRequest()) {
             throw new NotFoundHttpException();
         }
 
         $em = $this->getDoctrine()->getManager();
         $tag = $em->getRepository(Tag::class)->findOneBy(['categorie'=>'page','value'=>$request->request->get('value')]);
-        if ($tag)
-        {
+        if ($tag) {
             $page->removeTag($tag);
-            if($tag->getPages()->isEmpty())
-            {
+            if ($tag->getPages()->isEmpty()) {
                 $em->remove($tag);
             }
             $em->flush();
             return new JsonResponse([
                 'success' => true
             ]);
-        }
-        else {
+        } else {
             return new JsonResponse([
                 'success' => false
             ]);
         }
-
     }
-
-
-
 }
-

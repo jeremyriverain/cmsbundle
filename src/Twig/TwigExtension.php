@@ -49,17 +49,15 @@ class TwigExtension extends \Twig_Extension
     public function findByIdFunction($namespace, $id)
     {
         $page= $this->em->getRepository($namespace)->find($id);
-        if($page) {
+        if ($page) {
             return $page;
-        }
-        else
-        {
+        } else {
             return null;
         }
-
     }
 
-    public function getFilters(){
+    public function getFilters()
+    {
         return array(
             new \Twig_SimpleFilter('dateFr', array($this, 'dateFrFilter')),
             new \Twig_SimpleFilter('slugify', array($this, 'slugifyFilter')),
@@ -69,12 +67,9 @@ class TwigExtension extends \Twig_Extension
 
     public function imageFilter(string $filename, $filter = null)
     {
-        if (mime_content_type($this->targetDir."/".$filename) === 'image/svg+xml' || $filter === null)
-        {
+        if (mime_content_type($this->targetDir."/".$filename) === 'image/svg+xml' || $filter === null) {
             return $this->targetDir_relative."/".$filename;
-        }
-        else
-        {
+        } else {
             return $this->targetDir_relative."/".$filter.$filename;
         }
     }
@@ -106,7 +101,4 @@ class TwigExtension extends \Twig_Extension
         $year = $datetime->format('Y');
         return "$day $month $year";
     }
-
-
-
 }

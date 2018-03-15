@@ -47,10 +47,8 @@ class ModuleManager
 
         $copyImagesResources = $this->getImageResources($copy);
 
-        if ($copyImagesResources)
-        {
-            foreach ($copyImagesResources as $i)
-            {
+        if ($copyImagesResources) {
+            foreach ($copyImagesResources as $i) {
                 $this->handleImageResource($i);
             }
         }
@@ -65,24 +63,20 @@ class ModuleManager
         $resource = $m->getResource();
 
         $imageResources = $resource->getImageResources();
-        foreach ($imageResources as $i)
-        {
+        foreach ($imageResources as $i) {
             $resource->removeImageResource($i);
         }
         
         $collection = new ArrayCollection(
             array_merge(
-                $resource->getStringResources()->toArray(), 
+                $resource->getStringResources()->toArray(),
                 $resource->getTextResources()->toArray()
             )
         );
 
-        foreach ($collection as $c)
-        {
-            $c->setValue(null);  
+        foreach ($collection as $c) {
+            $c->setValue(null);
         }
-
-
     }
 
     private function setPositionOf(Module $module)
@@ -90,9 +84,8 @@ class ModuleManager
         $page = $module->getPage();
         $currentModules = $page->getModules();
         $maxPosition = 0;
-        foreach ($currentModules as $m)
-        {
-            if($maxPosition < $m->getPosition()){
+        foreach ($currentModules as $m) {
+            if ($maxPosition < $m->getPosition()) {
                 $maxPosition = $m->getPosition();
             }
         }
@@ -103,39 +96,27 @@ class ModuleManager
 
     public function addModuleToPage(Module $module, Page $page)
     {
-        if($module->getHasForm() === true) 
-        {
-            foreach ($page->getModules() as $m)
-            {
-                if ($m->getHasForm() === true)
-                {
+        if ($module->getHasForm() === true) {
+            foreach ($page->getModules() as $m) {
+                if ($m->getHasForm() === true) {
                     $error =  "Une page ne peut pas contenir plus d'un formulaire.";
                     break;
-
                 }
             }
         }
 
-        if($module->getOnlyOne() === true) 
-        {
-            foreach ($page->getModules() as $m)
-            {
-                if ($module->getName() === $m->getName())
-                {    
+        if ($module->getOnlyOne() === true) {
+            foreach ($page->getModules() as $m) {
+                if ($module->getName() === $m->getName()) {
                     $error = "Ce module existe déjà sur la page cible et a été configuré pour ne pas être ajouté plus d'1 fois sur la page.";
                     break;
                 }
             }
-
-        } 
-
-        if (isset($error))
-        {
-            return $error;
         }
-        else
-        {
 
+        if (isset($error)) {
+            return $error;
+        } else {
             $newModule = $this->copy($module);
             $newModule->setPage($page);
 
@@ -143,7 +124,6 @@ class ModuleManager
 
             return $newModule;
         }
-
     }
 
     public function getPotentialModules(Page $page)
@@ -152,20 +132,16 @@ class ModuleManager
 
         $nameModulesNotAvailable = [];
 
-        foreach ($modulesPage as $m)
-        {
-            if ($m->getOnlyOne() ===true)
-            {
+        foreach ($modulesPage as $m) {
+            if ($m->getOnlyOne() ===true) {
                 $nameModulesNotAvailable[] = $m->getName();
             }
         }
 
         $options = ['isBase' => true, 'manageable' => true];
 
-        foreach ($modulesPage as $m)
-        {
-            if ($m->getHasForm() === true)
-            {
+        foreach ($modulesPage as $m) {
+            if ($m->getHasForm() === true) {
                 $options['hasForm'] = false;
                 break;
             }
@@ -174,9 +150,8 @@ class ModuleManager
         $bases = $this->em->getRepository(Module::class)->findBy($options, ['name' => 'ASC']);
 
         $basesAvailable = [];
-        foreach ($bases as $b)
-        {
-            if(!in_array($b->getName(), $nameModulesNotAvailable)){
+        foreach ($bases as $b) {
+            if (!in_array($b->getName(), $nameModulesNotAvailable)) {
                 $basesAvailable[] = $b;
             }
         }
@@ -186,13 +161,12 @@ class ModuleManager
     private function handleImageResource(ImageResource $i)
     {
         $source = $this->pathFixturesImg.$i->getImage();
-        if(file_exists($source)){
+        if (file_exists($source)) {
             $nameDestFile = uniqId().$i->getImage();
             $destFile = $this->targetDir."/".$nameDestFile;
             if (!copy($source, $destFile)) {
                 return false;
-            }
-            else {
+            } else {
                 $i->setImage($nameDestFile);
                 return true;
             }
@@ -202,14 +176,11 @@ class ModuleManager
 
     private function processImageResourceOfChildren(Module $c)
     {
-        if($c->getChildren()->count() > 0) {
-            foreach ($c->getChildren() as $m)
-            {
+        if ($c->getChildren()->count() > 0) {
+            foreach ($c->getChildren() as $m) {
                 $mImagesResources = $this->getImageResources($m);
-                if ($mImagesResources)
-                {
-                    foreach ($mImagesResources as $i)
-                    {
+                if ($mImagesResources) {
+                    foreach ($mImagesResources as $i) {
                         $this->handleImageResource($i);
                     }
                 }
@@ -217,25 +188,19 @@ class ModuleManager
         }
     }
 
-    private function getImageResources(Module $m){
+    private function getImageResources(Module $m)
+    {
         $resource = $m->getResource();
-        if ($resource)
-        {
+        if ($resource) {
             $imagesResources = $m->getResource()->getImageResources();
 
-            if ($imagesResources->count() > 0)
-            {
+            if ($imagesResources->count() > 0) {
                 return $imagesResources;
+            } else {
+                return false;
             }
-            else
-            {
-                return false; 
-            }
-        }
-        else
-        {
-            return false;    
+        } else {
+            return false;
         }
     }
-
 }

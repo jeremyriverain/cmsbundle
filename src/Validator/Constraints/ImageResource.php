@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraint;
  */
 
 class ImageResource extends Constraint
-
 {
     public $message = "L'image n'a pas été renseignée.";
    

@@ -95,7 +95,7 @@ class ResourceType extends AbstractType
                         ],
                         'required' => false,
                     ]);
-                if($event->getData()->getImageResources()->count() > 0 || array_key_exists('imageResources', $configuration)){
+                if ($event->getData()->getImageResources()->count() > 0 || array_key_exists('imageResources', $configuration)) {
                     $form->add('imageResources', CollectionType::class, [
                         'entry_type' => ImageResourceType::class,
                         'allow_delete' => $configuration['imageResources']['delete'],
@@ -110,7 +110,7 @@ class ResourceType extends AbstractType
                         'required' => false,
                     ]);
                 }
-                if($event->getData()->getPageResources()->count() > 0){
+                if ($event->getData()->getPageResources()->count() > 0) {
                     $form->add('pageResources', CollectionType::class, [
                         'entry_type' => PageResourceType::class,
                         'allow_delete' => false,
@@ -146,6 +146,4 @@ class ResourceType extends AbstractType
     {
         return 'appbundle_resource';
     }
-
-
 }

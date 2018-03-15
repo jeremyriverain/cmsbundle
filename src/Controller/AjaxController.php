@@ -23,9 +23,7 @@ class AjaxController extends Controller
      */
     public function switchAction(Request $request)
     {
-
-        if ($request->isXmlHttpRequest())
-        {
+        if ($request->isXmlHttpRequest()) {
             try {
                 $namespaceParent = $request->request->get('namespaceParent');
                 $id = $request->request->get('id');
@@ -43,19 +41,15 @@ class AjaxController extends Controller
                 return new JsonResponse([
                     "success" => true,
                 ]);
-            }
-            catch(\Throwable $e) {
-
+            } catch (\Throwable $e) {
                 return new JsonResponse([
                     "success" => false,
                     'message' => $e->getMessage(),
                     'code' => $e->getCode()
                 ]);
-
-            }  
+            }
         }
         throw new NotFoundHttpException();
-
     }
 
     /**
@@ -65,8 +59,7 @@ class AjaxController extends Controller
     public function deleteAction(Request $request)
     {
         try {
-            if ($request->isXmlHttpRequest())
-            {
+            if ($request->isXmlHttpRequest()) {
                 $namespace = $request->request->get('namespace');
 
                 $id = $request->request->get('id');
@@ -75,17 +68,14 @@ class AjaxController extends Controller
 
                 $entity = $em->getRepository($namespace)->find($id);
 
-                if (!$entity)
-                {
+                if (!$entity) {
                     return new JsonResponse([
                         "success"=> false
                     ]);
                 }
 
-                if(property_exists($namespace, 'deletable'))
-                {
-                    if($entity->getDeletable() === false)
-                    {
+                if (property_exists($namespace, 'deletable')) {
+                    if ($entity->getDeletable() === false) {
                         return new JsonResponse([
                             "success" => false,
                             'message' => "Cette entité ne peut pas être supprimée.",
@@ -100,11 +90,9 @@ class AjaxController extends Controller
 
                 return new JsonResponse([
                     "success" => true,
-                ]);     
+                ]);
             }
-        }
-        catch(\Throwable $e)
-        {
+        } catch (\Throwable $e) {
             return new JsonResponse([
                 "success" => false,
                 'message' => $e->getMessage(),
@@ -119,9 +107,9 @@ class AjaxController extends Controller
      * @Route("/position", name="geekco_cms_ajax_position")
      * @Method({"POST"})
      */
-    public function positionAction(Request $request) {
-        if (!$request->isXmlHttpRequest())
-        {
+    public function positionAction(Request $request)
+    {
+        if (!$request->isXmlHttpRequest()) {
             throw new NotFoundHttpException();
         }
         $namespace = $request->request->get('namespace');
@@ -129,11 +117,9 @@ class AjaxController extends Controller
         $repo = $em->getRepository($namespace);
         $items = $request->request->get('items');
 
-        foreach ($items as $i)
-        {
+        foreach ($items as $i) {
             $e = $repo->find($i['id']);
-            if (!$e)
-            {
+            if (!$e) {
                 throw new NotFoundHttpException();
             }
             $e->setPosition($i['position']);
@@ -165,26 +151,24 @@ class AjaxController extends Controller
         
         $errors = $validator->validate($entity);
 
-			if (count($errors) > 0) {
-                $array = [];
-                foreach ($errors as $e)
-                {
-                    $array[] = $e->getMessage();
-                }
+        if (count($errors) > 0) {
+            $array = [];
+            foreach ($errors as $e) {
+                $array[] = $e->getMessage();
+            }
 
-				return new JsonResponse([
+            return new JsonResponse([
                     'errors' => $array,
-                    'success' => false  
+                    'success' => false
                 ]);
-			}
+        }
 
         $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', "Les modifications sont enregistrées.");
+        $request->getSession()->getFlashBag()->add('success', "Les modifications sont enregistrées.");
 
         return new JsonResponse([
             'success' => true
         ]);
     }
-
 }

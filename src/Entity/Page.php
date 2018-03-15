@@ -18,14 +18,14 @@ use Geekco\CmsBundle\Entity\MenuItem;
 class Page
 {
 
-	/**
-	 * @var int
-	 *
-	 * @ORM\Column(name="id", type="integer")
-	 * @ORM\Id
-	 * @ORM\GeneratedValue(strategy="AUTO")
-	 */
-	private $id;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
     /**
     * @var string
@@ -35,11 +35,11 @@ class Page
     */
     private $name;
 
-	/**
-	 * @ORM\Column(length=128, unique=true)
+    /**
+     * @ORM\Column(length=128, unique=true)
      * @Assert\Length(max=255)
-	 */
-	private $slug;
+     */
+    private $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="Module", mappedBy="page", cascade={"remove"}, orphanRemoval=true, fetch="EAGER")
@@ -71,7 +71,7 @@ class Page
     {
         return ucfirst($this->name);
     }
-	
+    
     /**
      * Constructor
      */
@@ -82,15 +82,15 @@ class Page
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-	/**
-	 * Get id
-	 *
-	 * @return int
-	 */
-	public function getId()
-	{
-		return $this->id;
-	}
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /*
      * Get name
@@ -119,7 +119,7 @@ class Page
         return $this;
     }
 
-  	public function getSlug()
+    public function getSlug()
     {
         return $this->slug;
     }

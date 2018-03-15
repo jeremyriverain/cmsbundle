@@ -30,15 +30,13 @@ class ImageResourceListener
             return;
         }
 
-        if($entity->getImageFile() !== null)
-        {
-        $fileName = $this->uploadFile($entity);
-        $entity->setImage($fileName);
+        if ($entity->getImageFile() !== null) {
+            $fileName = $this->uploadFile($entity);
+            $entity->setImage($fileName);
         }
         $entity->setTemporaryFile($entity->getImage());
 
         $this->imageManager->applyFilters($entity);
-
     }
 
     public function preUpdate(PreUpdateEventArgs $args)
@@ -48,14 +46,12 @@ class ImageResourceListener
             return;
         }
         $fileName = $this->uploadFile($entity);
-        if($fileName)
-        { 
+        if ($fileName) {
             $entity->setImage($fileName);
             $this->deleteFile($entity->getTemporaryFile());
             $entity->setTemporaryFile($fileName);
             $this->imageManager->applyFilters($entity);
         }
-
     }
 
     public function postLoad(LifecycleEventArgs $args)
@@ -68,8 +64,8 @@ class ImageResourceListener
 
         $fileName = $entity->getImage();
         if (!empty($fileName)) {
-            if(file_exists($this->uploader->getTargetDir().'/'.$fileName)) {
-                $entity->setImageFile( new File($this->uploader->getTargetDir().'/'.$fileName));
+            if (file_exists($this->uploader->getTargetDir().'/'.$fileName)) {
+                $entity->setImageFile(new File($this->uploader->getTargetDir().'/'.$fileName));
             }
         }
     }
@@ -98,18 +94,13 @@ class ImageResourceListener
 
     private function deleteFile(string $fileName)
     {
-        if (file_exists($this->uploader->getTargetDir()."/".$fileName) && is_file($this->uploader->getTargetDir()."/".$fileName))
-        {    
+        if (file_exists($this->uploader->getTargetDir()."/".$fileName) && is_file($this->uploader->getTargetDir()."/".$fileName)) {
             unlink($this->uploader->getTargetDir()."/".$fileName);
-
         }
-        foreach ($this->imageManager->getScaleFilters() as $f)
-        {
-            if(file_exists($this->uploader->getTargetDir()."/".$f['prefix'].$fileName) && is_file($this->uploader->getTargetDir()."/".$fileName)) {
-            unlink($this->uploader->getTargetDir()."/".$f['prefix'].$fileName);
-        }
+        foreach ($this->imageManager->getScaleFilters() as $f) {
+            if (file_exists($this->uploader->getTargetDir()."/".$f['prefix'].$fileName) && is_file($this->uploader->getTargetDir()."/".$fileName)) {
+                unlink($this->uploader->getTargetDir()."/".$f['prefix'].$fileName);
+            }
         }
     }
-
-
 }

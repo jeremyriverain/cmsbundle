@@ -16,9 +16,9 @@ class IntegerResourceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($builder)
-            {
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($builder) {
                 $form = $event->getForm();
                 $child = $event->getData();
 
@@ -27,18 +27,12 @@ class IntegerResourceType extends AbstractType
 
                     $constraints = [];
 
-                    if(!empty($child->getConstraints()))
-                    {
-                        foreach ($child->getConstraints() as $key => $constraint)
-                        { 
-                            if (!is_array($constraint))
-                            {
-
+                    if (!empty($child->getConstraints())) {
+                        foreach ($child->getConstraints() as $key => $constraint) {
+                            if (!is_array($constraint)) {
                                 $compound = "Symfony\\Component\\Validator\\Constraints\\".$constraint;
                                 $constraints[] = new $compound();
-                            }
-                            else
-                            {
+                            } else {
                                 $compound = "Symfony\\Component\\Validator\\Constraints\\".$key;
                                 $constraints[] = new $compound($constraint);
                             }
@@ -49,7 +43,6 @@ class IntegerResourceType extends AbstractType
                         'label' => $label,
                         'constraints' => $constraints
                     ]);
-
                 }
             }
         );
@@ -72,6 +65,4 @@ class IntegerResourceType extends AbstractType
     {
         return 'appbundle_integerresource';
     }
-
-
 }

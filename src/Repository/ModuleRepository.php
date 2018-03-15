@@ -16,8 +16,7 @@ class ModuleRepository extends ServiceEntityRepository
     
     public function findByUniqueCriteria($array)
     {
-        if ($array['isBase'] === false)
-        {
+        if ($array['isBase'] === false) {
             return [];
         }
         return $this->createQueryBuilder('d')
@@ -27,5 +26,4 @@ class ModuleRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    
 }

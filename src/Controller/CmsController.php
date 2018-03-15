@@ -21,5 +21,4 @@ class CmsController extends Controller
                 
         ]);
     }
-
 }

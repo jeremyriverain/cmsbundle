@@ -108,5 +108,4 @@ class Tag
     {
         return $this->pages;
     }
-
 }

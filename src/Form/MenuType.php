@@ -29,7 +29,6 @@ class MenuType extends AbstractType
             ],
             'required' => false,
         ]);
-
     }
 
     /**
@@ -41,5 +40,4 @@ class MenuType extends AbstractType
             'data_class' => Menu::class
         ));
     }
-
 }

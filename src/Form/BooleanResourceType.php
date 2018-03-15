@@ -16,9 +16,9 @@ class BooleanResourceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($builder)
-            {
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($builder) {
                 $form = $event->getForm();
                 $child = $event->getData();
 
@@ -30,8 +30,6 @@ class BooleanResourceType extends AbstractType
                             'label' => $label
                         ])
                         ;
-
-
                 }
             }
         );
@@ -54,6 +52,4 @@ class BooleanResourceType extends AbstractType
     {
         return 'appbundle_booleanresource';
     }
-
-
 }

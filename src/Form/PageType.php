@@ -14,33 +14,31 @@ use Geekco\CmsBundle\Form\ImageResourceType;
 
 class PageType extends AbstractType
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function buildForm(FormBuilderInterface $builder, array $options)
-	{
+    /**
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $page = $event->getData();
+            $form = $event->getForm();
 
-		$builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-			$page = $event->getData();
-			$form = $event->getForm();
+            if (!$page || null === $page->getId()) {
+                $form->add('name', null, [
+                    'label' => 'Titre de la page',
+                    'attr' => [
+                        'help' => "L'URL est déduite directement du titre de la page."
+                    ]
+                ])
+                ;
+            }
+        });
+    }
 
-			if (!$page || null === $page->getId()) {
-				$form->add('name', null, [
-					'label' => 'Titre de la page',
-					'attr' => [
-						'help' => "L'URL est déduite directement du titre de la page."
-					]
-				])
-				;
-			}
-		});
-	}
-
-	public function configureOptions(OptionsResolver $resolver)
-	{
-		$resolver->setDefaults(array(
-			'data_class' => Page::class
-		));
-	}
-
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => Page::class
+        ));
+    }
 }

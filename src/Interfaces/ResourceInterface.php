@@ -2,10 +2,9 @@
 
 namespace Geekco\CmsBundle\Interfaces;
 
-interface ResourceInterface {
-
+interface ResourceInterface
+{
     public function getName();
     
     public function getValue();
-
 }

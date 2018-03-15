@@ -50,6 +50,4 @@ class ResourceBaseType extends AbstractType
     {
         return 'geekcocmsbundle_resourcebase';
     }
-
-
 }

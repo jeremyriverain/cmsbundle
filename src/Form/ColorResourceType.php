@@ -17,9 +17,9 @@ class ColorResourceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->addEventListener(FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($builder)
-            {
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($builder) {
                 $form = $event->getForm();
                 $child = $event->getData();
 
@@ -35,7 +35,6 @@ class ColorResourceType extends AbstractType
                           new Regex(array('pattern'=>"/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/", 'message'=> "La couleur n'est pas enregistrée dans un format valide."))
                         ]
                     ]);
-
                 }
             }
         );
@@ -58,6 +57,4 @@ class ColorResourceType extends AbstractType
     {
         return 'appbundle_colorresource';
     }
-
-
 }

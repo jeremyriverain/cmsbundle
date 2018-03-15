@@ -11,12 +11,11 @@ use Geekco\CmsBundle\Interfaces\ResourceInterface;
  */
 class ResourceTransformer
 {
-
     public function getArray(Resource $resource)
     {
         $collection = new ArrayCollection(
             array_merge(
-                $resource->getStringResources()->toArray(), 
+                $resource->getStringResources()->toArray(),
                 $resource->getTextResources()->toArray(),
                 $resource->getImageResources()->toArray(),
                 $resource->getBooleanResources()->toArray(),
@@ -27,21 +26,17 @@ class ResourceTransformer
         );
 
         $array = [];
-        foreach ($collection as $c)
-        {
-            if (!$c instanceof ResourceInterface)
-            {
-                throw new \Exception("Resource Transformer: une entité de type ressource n'implémente pas ResourceInterface"); 
+        foreach ($collection as $c) {
+            if (!$c instanceof ResourceInterface) {
+                throw new \Exception("Resource Transformer: une entité de type ressource n'implémente pas ResourceInterface");
             }
 
-            if($c !== null)
-            {
-                $name = $c->getName(); 
+            if ($c !== null) {
+                $name = $c->getName();
                 $value = $c->getValue();
                 $array[$name] = $value;
             }
         }
         return $array;
     }
-
 }

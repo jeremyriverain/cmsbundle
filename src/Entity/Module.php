@@ -435,8 +435,8 @@ class Module
     public function setPage(Page $page = null)
     {
         $this->page = $page;
-        if($page !== null) {
-        $page->addModule($this);
+        if ($page !== null) {
+            $page->addModule($this);
         }
 
         return $this;

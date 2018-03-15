@@ -105,7 +105,7 @@ class IntegerResource implements ResourceInterface
     public function getValue()
     {
         return $this->value;
-    } 
+    }
 
     public function setResource(Resource $resource = null)
     {

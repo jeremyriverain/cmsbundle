@@ -339,5 +339,4 @@ class Resource
         $this->updatedAt = $updatedAt;
         return $this;
     }
-
 }
