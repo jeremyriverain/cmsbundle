@@ -12,7 +12,7 @@ class Slugify
         // replace non letter or digits by -
         $text = preg_replace('~[^\pL\d]+~u', '-', $text);
 
-		setlocale(LC_ALL, 'en_US.UTF8');
+        setlocale(LC_ALL, 'en_US.UTF8');
 
         // transliterate
         $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
