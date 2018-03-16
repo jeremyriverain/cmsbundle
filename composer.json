@@ -44,5 +44,18 @@
         "psr-4": {
             "Geekco\\CmsBundle\\": "src"
         }
+    },
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts",
+            "ln -fs ../../.pre-commit.sh .git/hooks/pre-commit"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ]
     }
 }
