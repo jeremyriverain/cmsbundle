@@ -13,8 +13,8 @@ module.exports = {
   target: 'web',
   entry: {
     'app' : [
-      './src/assets/js/app.js',
-      './src/assets/css/app.scss'
+      './assets/js/app.js',
+      './assets/css/app.scss'
     ],
   },
   resolve: {

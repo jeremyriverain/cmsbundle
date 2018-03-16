@@ -65,7 +65,7 @@
         },
         "post-install-cmd": [
             "@auto-scripts",
-            "rm .git/hooks/pre-commit && ln -s ./pre-commit.sh .git/hooks/pre-commit"
+            "ln -fs ../../.pre-commit.sh .git/hooks/pre-commit"
         ],
         "post-update-cmd": [
             "@auto-scripts"
