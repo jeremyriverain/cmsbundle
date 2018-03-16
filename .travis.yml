@@ -7,6 +7,11 @@ matrix:
         - php: 7.2
 install:
     - composer install
+    - composer install
+    - cp env.dist .env
+    - php bin/console doctrine:database:create --env=test
+    - php bin/console doctrine:migrations:diff
+    - php bin/console doctrine:migrations:migrate --no-interaction
 
 script:
     - ./bin/phpunit
