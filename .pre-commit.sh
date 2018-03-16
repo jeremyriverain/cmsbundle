@@ -4,7 +4,7 @@
 php-cs-fixer fix src --verbose
 
 # run tests
-output=`bin/phpunit`
+output=`composer run test`
 returnCode=$?
 outputlog="/tmp/phpunit_output_`date +%s`.log"
 
