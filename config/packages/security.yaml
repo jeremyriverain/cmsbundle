@@ -1,0 +1,37 @@
+security:
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+    encoders:
+        Geekco\CmsBundle\Entity\User:
+            algorithm: bcrypt
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        our_db_provider:
+            entity:
+                class: Geekco\CmsBundle\Entity\User
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern:    ^/
+            user_checker: Geekco\CmsBundle\Security\UserChecker
+            http_basic: ~
+            provider: our_db_provider
+            switch_user: ~
+
+            anonymous: ~
+
+            # https://symfony.com/doc/current/security/form_login_setup.html
+            form_login:
+                login_path: geekco_cms_connexion
+                check_path: geekco_cms_connexion
+                csrf_token_generator: security.csrf.token_manager
+
+            logout:
+                path: /deconnexion
+                target: /
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }

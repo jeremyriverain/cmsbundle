@@ -1,0 +1,3 @@
+geekco_cms:
+    targetDir_relative: 'cms/uploads'
+    targetDir: '%kernel.project_dir%/public/cms/uploads'
