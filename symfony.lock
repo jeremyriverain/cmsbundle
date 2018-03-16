@@ -254,6 +254,9 @@
     "symfony/process": {
         "version": "4.0.x-dev"
     },
+    "symfony/profiler-pack": {
+        "version": "v1.0.3"
+    },
     "symfony/property-access": {
         "version": "4.0.x-dev"
     },
