@@ -10,6 +10,6 @@ class SlugifyTest extends TestCase
         $slugify = new Slugify();
         $result = $slugify->slugify('"les caractères accentués sont interdits, de même que les espaces et les caractères spéciaux. 1, 2... autorisés"');
 
-        $this->assertEquals('les-cateres-accentues-sont-interdits-de-meme-que-les-espaces-et-les-caracteres-speciaux-1-2-autorises', $result);
+        $this->assertEquals('les-caracteres-accentues-sont-interdits-de-meme-que-les-espaces-et-les-caracteres-speciaux-1-2-autorises', $result);
     }
 }
