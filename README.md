@@ -52,7 +52,7 @@ parameters:
 services:
     Geekco\CmsBundle\:
         resource: '../vendor/geekco/cmsbundle/src/*'
-        exclude: '../vendor/geekco/cmsbundle/{Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../vendor/geekco/cmsbundle/src/{Entity,Migrations,Tests,Kernel.php}'
 
     Geekco\CmsBundle\Controller\:
         resource: '../vendor/geekco/cmsbundle/src/Controller'
