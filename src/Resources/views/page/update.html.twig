@@ -4,108 +4,111 @@
 
 {% block body %}
 
-	<div class="section">
-		<div class="row">
+    <div class="section">
+        <div class="row">
 
-			<div class="col s12 m6 l7">
+            <div class="col s12 m6 l7">
 
-				<ul class="collection with-header sortable-container collection-container sortable-container" data-collection-deletable=false data-collection-namespace="Geekco\CmsBundle\Entity\Module" id="property-updatable" style="overflow:visible">
-					<li class="collection-header">
-						<h1 class="center-align">Structure de la page
-							{{page.name}}
-						</h1>
-					</li>
+                <ul class="collection with-header sortable-container collection-container sortable-container" data-collection-deletable=false data-collection-namespace="Geekco\CmsBundle\Entity\Module" id="property-updatable" style="overflow:visible">
+                    <li class="collection-header">
+                        <h1 class="center-align">Structure de la page
+                            {{page.name}}
+                        </h1>
+                    </li>
 
-					<li class="collection-item d-f jc-spb ai-c fld-c-on-small">
-						<div class="valign-wrapper">
-							<a data-tooltip="modifier le menu"  href="{{path('geekco_cms_menu_update', {'name': 'navbar'})}}" class="pr-1 tooltipped"><i class="material-icons amber-text">edit</i></a> 
-							Menu
-						</div>
-					</li>
+                    <li class="collection-item d-f jc-spb ai-c fld-c-on-small">
+                        <div class="valign-wrapper">
+                            <a data-tooltip="modifier le menu"  href="{{path('geekco_cms_menu_update', {'name': 'navbar'})}}" class="pr-1 tooltipped"><i class="material-icons amber-text">edit</i></a> 
+                            Menu
+                        </div>
+                    </li>
 
-					{% if modules|length > 0 %}
-						{% for a in modules  %}
+                    {% if modules|length > 0 %}
+                        {% for a in modules  %}
                             <li class="collection-item item-collection {{a.isPositionableInThePage == true ? 'sortable-item' }} d-f ai-c fld-c-on-small" data-collection-position="{{loop.index0}}" data-collection-id={{a.id}}>
-								<div class="valign-wrapper">
-									{% if a.resource is not null %}
-										<a href="{{path('geekco_cms_module_update', {'id': a.id})}}" class="mr-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="modifier le module"><i class="material-icons amber-text">edit</i></a>
-									{% endif %}
+                                <div class="valign-wrapper">
+                                    {% if a.resource is not null %}
+                                        <a href="{{path('geekco_cms_module_update', {'id': a.id})}}" class="mr-1 tooltipped" data-position="bottom" data-delay="50" data-tooltip="modifier le module"><i class="material-icons amber-text">edit</i></a>
+                                    {% endif %}
                                     {% if a.deletable == true %}
-									{{ macros.delete_icon('Geekco\\CmsBundle\\Entity\\Module', a.id, "supprimer le module") }}
-                                    <a href="#!" class="tooltipped mr-1 dropdown-button" data-position="top" data-delay="50" data-tooltip="dupliquer sur une autre page" data-alignment="left" data-beloworigin="true" data-constrainwidth="false" data-activates='dropdown_pages{{a.id}}'><i class="material-icons">content_copy</i></a>
+                                        {{ macros.delete_icon('Geekco\\CmsBundle\\Entity\\Module', a.id, "supprimer le module") }}
+                                        <a href="#!" class="tooltipped mr-1 dropdown-button" data-position="top" data-delay="50" data-tooltip="dupliquer sur une autre page" data-alignment="left" data-beloworigin="true" data-constrainwidth="false" data-activates='dropdown_pages{{a.id}}'><i class="material-icons">content_copy</i></a>
 
                                     {% endif %}
-									<!-- Dropdown Structure -->
+                                    {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                        <a data-tooltip="modifiier la configuration" class="tooltipped mr-1" href="{{path('geekco_cms_module_configuration_update', {'id': a.id})}}"><i class="material-icons">settings</i></a>
+                                    {% endif %}
+                                    <!-- Dropdown Structure -->
                                     <ul id='dropdown_pages{{a.id}}' class='dropdown-content module-adder'>
-										{% for p in pages %}
+                                        {% for p in pages %}
                                             {% if p.id != page.id%}
-											<li class="module-item" data-module-id={{a.id}} data-page-id="{{p.id}}"><a href="#">{{p.name}}</a></li>
+                                                <li class="module-item" data-module-id={{a.id}} data-page-id="{{p.id}}"><a href="#">{{p.name}}</a></li>
                                             {% endif %}
-										{% endfor %}
-									</ul>
-								</div>
-								<div class="mr-1">
-									{{macros.property_updater("\\Geekco\\CmsBundle\\Entity\\Module", a.id, 'setLabel', a.label)}}
-								</div>
-							</li>
-						{% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="mr-1">
+                                    {{macros.property_updater("\\Geekco\\CmsBundle\\Entity\\Module", a.id, 'setLabel', a.label)}}
+                                </div>
+                            </li>
+                        {% endfor %}
 
-					{% else %}
-						<li>
-							<div><p class='center-align'>Aucun module n'est attaché à cette page.</p></div>
-						</li>
-					{% endif%}
+                    {% else %}
+                        <li>
+                            <div><p class='center-align'>Aucun module n'est attaché à cette page.</p></div>
+                        </li>
+                    {% endif%}
 
 
-					<li class="collection-item d-f jc-spb ai-c fld-c-on-small">
-						<div class="valign-wrapper">
+                    <li class="collection-item d-f jc-spb ai-c fld-c-on-small">
+                        <div class="valign-wrapper">
                             <a href="{{path('geekco_cms_menu_update', {'name': 'footer'})}}" class="pr-1"><i class="material-icons amber-text">edit</i></a> 
-							<p>
-							Footer
-							</p>
-						</div>
-					</li>
+                            <p>
+                            Footer
+                            </p>
+                        </div>
+                    </li>
 
-				</ul>
+                </ul>
 
-				<div class="card-panel teal">
-					<i class="material-icons white-text">info</i> 
-					<span class="white-text">Ajoutez des modules en cliquant sur les tags ci-dessous</span>
-				</div>
-				<div class="module-adder">
-					{% for m in bases  %}
-						<div class="chip module-item" data-module-id={{m.id}} data-page-id="{{page.id}}">
-							{{m.label|capitalize}}
-						</div>
-					{% endfor %}
-				</div>
+                <div class="card-panel teal">
+                    <i class="material-icons white-text">info</i> 
+                    <span class="white-text">Ajoutez des modules en cliquant sur les tags ci-dessous</span>
+                </div>
+                <div class="module-adder">
+                    {% for m in bases  %}
+                        <div class="chip module-item" data-module-id={{m.id}} data-page-id="{{page.id}}">
+                            {{m.label|capitalize}}
+                        </div>
+                    {% endfor %}
+                </div>
 
-			</div>
+            </div>
 
-			<div class="col s12 m6 l5">
-				<div class="card-panel">
-					<h4>
-						Liste  des pages
-					</h4>
-					<ul class="section table-of-contents">
-						{% for p in pages  %}
-							<li><a class="{{path('geekco_cms_page_update', {'id': p.id}) == app.request.pathInfo ? 'active'}}" href="{{path('geekco_cms_page_update', {'id': p.id})}}">{{p.name|capitalize}}</a>   <span class="badge new" data-badge-caption="">
-{% set count = p.modules|length %}
-									{% transchoice count %}
-									{0} Aucun module|{1} 1 module|]1,Inf[ %count% modules
-									{% endtranschoice %}
-
-
-								</span>
-							</li>
-						{% endfor %}
-					</ul>
-				</div>
-			</div>
+            <div class="col s12 m6 l5">
+                <div class="card-panel">
+                    <h4>
+                        Liste  des pages
+                    </h4>
+                    <ul class="section table-of-contents">
+                        {% for p in pages  %}
+                            <li><a class="{{path('geekco_cms_page_update', {'id': p.id}) == app.request.pathInfo ? 'active'}}" href="{{path('geekco_cms_page_update', {'id': p.id})}}">{{p.name|capitalize}}</a>   <span class="badge new" data-badge-caption="">
+                                    {% set count = p.modules|length %}
+                                    {% transchoice count %}
+                                    {0} Aucun module|{1} 1 module|]1,Inf[ %count% modules
+                                    {% endtranschoice %}
 
 
-		</div>
+                                </span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
 
-	</div>
+
+        </div>
+
+    </div>
 
 {% endblock %}

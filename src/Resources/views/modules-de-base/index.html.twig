@@ -27,7 +27,7 @@
                                 {{macros.switch_field(e.onlyOne, "Geekco\\CmsBundle\\Entity\\Module", e.id, "setOnlyOne")}}	
 							</td>
                             <td> 
-                                {{macros.edit_icon(path('geekco_cms_modulebase_update', {'id': e.id}), 'Modifier le module')}}
+                                {{macros.edit_icon(path('geekco_cms_module_base_configuration_update', {'id': e.id}), 'Modifier le module')}}
                                 {{ macros.delete_icon('Geekco\\CmsBundle\\Entity\\Module', e.id, 'Supprimer le module') }}
                             </td>
                         </tr>
@@ -36,7 +36,7 @@
                 </tbody>
             </table>
 
-            {{ macros.new_icon(path('geekco_cms_modulebase_new'), 'Nouveau module') }}
+            {{ macros.new_icon(path('geekco_cms_module_base_configuration_new'), 'Nouveau module') }}
 
         </div>
     </div>

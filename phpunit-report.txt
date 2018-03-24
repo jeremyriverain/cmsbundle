@@ -1,24 +1,28 @@
 
 
 Code Coverage Report:      
-  2018-03-16 17:34:04      
+  2018-03-16 17:46:44      
                            
  Summary:                  
-  Classes:  2.56% (2/78)   
-  Methods:  1.89% (7/371)  
-  Lines:    2.02% (43/2127)
+  Classes:  7.69% (6/78)   
+  Methods:  4.07% (15/369) 
+  Lines:    5.59% (79/1413)
 
 SlugifyTest
   Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  4/  4)
 \Geekco\CmsBundle::Geekco\CmsBundle\Kernel
-  Methods:  40.00% ( 2/ 5)   Lines:  28.57% (  6/ 21)
+  Methods: 100.00% ( 5/ 5)   Lines: 100.00% ( 21/ 21)
 \Geekco\CmsBundle\Controller::Geekco\CmsBundle\Controller\AppController
   Methods:  33.33% ( 1/ 3)   Lines:  23.33% (  7/ 30)
+\Geekco\CmsBundle\DependencyInjection::Geekco\CmsBundle\DependencyInjection\Configuration
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  7/  7)
+\Geekco\CmsBundle\DependencyInjection::Geekco\CmsBundle\DependencyInjection\GeekcoCmsExtension
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  7/  7)
 \Geekco\CmsBundle\Repository::Geekco\CmsBundle\Repository\PageRepository
   Methods: 100.00% ( 2/ 2)   Lines: 100.00% (  9/  9)
 \Geekco\CmsBundle\Services::Geekco\CmsBundle\Services\Slugify
   Methods:   0.00% ( 0/ 1)   Lines:  90.00% (  9/ 10)
 \Geekco\CmsBundle\Tests\Controller::Geekco\CmsBundle\Tests\Controller\AppControllerTest
-  Methods:   0.00% ( 0/ 1)   Lines:  75.00% (  3/  4)
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  4/  4)
 \Geekco\CmsBundle\Twig::Geekco\CmsBundle\Twig\TwigExtension
-  Methods:  11.11% ( 1/ 9)   Lines:  17.86% (  5/ 28)
+  Methods:  33.33% ( 3/ 9)   Lines:  39.29% ( 11/ 28)
