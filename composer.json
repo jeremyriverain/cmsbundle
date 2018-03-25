@@ -58,6 +58,6 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "test": "php -d zend_extension=/usr/lib/php/20160303/xdebug.so bin/phpunit --coverage-text=phpunit-report.txt"
+        "test": "php -d zend_extension=/usr/lib/php/20160303/xdebug.so bin/phpunit"
     }
 }
