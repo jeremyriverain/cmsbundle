@@ -4,6 +4,7 @@
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
+/public/cms/*
 /var/
 /vendor/
 ###< symfony/framework-bundle ###

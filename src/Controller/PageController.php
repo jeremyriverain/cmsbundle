@@ -249,8 +249,7 @@ class PageController extends Controller
         $form = $this->createForm(PageType::class, $page);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             $request->getSession()->getFlashBag()->add('success', "Image enregistrée");
