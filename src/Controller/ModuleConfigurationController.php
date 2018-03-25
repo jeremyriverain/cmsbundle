@@ -97,6 +97,4 @@ class ModuleConfigurationController extends Controller
             'form' => $form->createView()
         ]);
     }
-    
-    
 }

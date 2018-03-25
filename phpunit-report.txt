@@ -1,12 +1,12 @@
 
 
 Code Coverage Report:      
-  2018-03-16 17:46:44      
+  2018-03-24 17:47:55      
                            
  Summary:                  
   Classes:  7.69% (6/78)   
-  Methods:  4.07% (15/369) 
-  Lines:    5.59% (79/1413)
+  Methods:  3.51% (13/370) 
+  Lines:    5.13% (73/1423)
 
 SlugifyTest
   Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  4/  4)
@@ -25,4 +25,4 @@ SlugifyTest
 \Geekco\CmsBundle\Tests\Controller::Geekco\CmsBundle\Tests\Controller\AppControllerTest
   Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  4/  4)
 \Geekco\CmsBundle\Twig::Geekco\CmsBundle\Twig\TwigExtension
-  Methods:  33.33% ( 3/ 9)   Lines:  39.29% ( 11/ 28)
+  Methods:  11.11% ( 1/ 9)   Lines:  17.86% (  5/ 28)

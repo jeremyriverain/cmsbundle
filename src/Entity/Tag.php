@@ -38,6 +38,14 @@ class Tag
     * @Assert\NotBlank()
     * @ORM\Column(type="string", length=100)
     */
+    private $slug;
+
+    /**
+    * @var string
+    * @Assert\Length(max=100)
+    * @Assert\NotBlank()
+    * @ORM\Column(type="string", length=100)
+    */
     private $categorie;
 
     /**
@@ -107,5 +115,22 @@ class Tag
     public function getPages()
     {
         return $this->pages;
+    }
+
+    /*
+     * Get slug
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /*
+     * Set slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
     }
 }

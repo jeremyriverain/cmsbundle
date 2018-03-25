@@ -62,6 +62,12 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist, lazy: true}
             - { name: doctrine.event_listener, event: preUpdate, lazy: true }
+
+    Geekco\CmsBundle\EventListener\TagListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist, lazy: true}
+            - { name: doctrine.event_listener, event: preUpdate, lazy: true }
+
     Geekco\CmsBundle\EventListener\ResourceListener:
         tags:
             - { name: doctrine.event_listener, event: prePersist, lazy: true }
