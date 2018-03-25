@@ -32,6 +32,9 @@ class PageType extends AbstractType
                 ])
                 ;
             }
+            else {
+                $form->add('image', ImageResourceType::class, ['label' => false]);
+            }
         });
     }
 

@@ -24,6 +24,7 @@
                         <th>
                             URL</th>
                         <th>Tags</th>
+                        <th>Image</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -39,12 +40,25 @@
                             <td>/{{e.slug}}</td>
                             <td>
                                 <div class="chips-placeholder" id="chips-placeholder{{e.id}}" data-id="{{e.id}}" data-has-tags="{{e.tags|length > 0 ? 'true' : 'false'}}">
-                                
+
                                 </div>
                             </td>
+                            <td>
+                                {% if e.image is null %}
+                                    <span class="grey lighten-2 grey-text text-darken-2" style="padding: 0.2rem 0.4rem; border-radius: 2px">aucune</span>
+                                {% else %}
+                                    <div style="position:relative">
+                                        <img src="{{'/' ~ e.image.image|image('scale_xxs')}}" alt="" >
+                                        <div style="position:absolute;top:-7px;right:-7px;">
+                                            <a href="{{path('geekco_cms_page_delete_image', {'id': e.id})}}" class=" black-text">
+                                                <i class="material-icons red">close</i>
+                                            </a>
+                                        </div>
+                                {% endif %}
+                            </td>
                             <td> 
-
-                                <a href="{{path('geekco_cms_page_update', {'id': e.id})}}" data-delay="50" data-tooltip="modifier la structure de la page" class="mr-1 tooltipped"><i class="material-icons amber-text">edit</i></a>
+                                <a href="{{path('geekco_cms_page_update_image', {'id': e.id})}}" class="tooltipped mr-1" data-tooltip="image de la page"><i class="material-icons">image</i></a>
+                                <a href="{{path('geekco_cms_page_update', {'id': e.id})}}" data-delay="50" data-position="top" data-tooltip="modifier la structure de la page" class="mr-1 tooltipped"><i class="material-icons amber-text">edit</i></a>
                                 {% if e.slug != 'accueil' %}
                                     {{ macros.delete_icon('Geekco\\CmsBundle\\Entity\\Page', e.id, "supprimer la page") }}
                                 {% endif %}
@@ -58,7 +72,7 @@
 
             {{ macros.new_icon(path('geekco_cms_page_new'), "ajouter 1 page") }}
 
+                                    </div>
         </div>
-    </div>
 
 {% endblock %}

@@ -240,4 +240,38 @@ class PageController extends Controller
             ]);
         }
     }
+
+    /**
+     * @Route("/update/{id}/image", name="geekco_cms_page_update_image")
+     */
+    public function updateImage(Page $page, Request $request)
+    {
+        $form = $this->createForm(PageType::class, $page);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', "Image enregistrée");
+            return $this->redirectToRoute("geekco_cms_page_list");
+        }
+
+        return $this->render('@GeekcoCms/page/update_image.html.twig', [
+            'form' => $form->createView(),
+            'page' => $page
+        ]);
+    }
+    
+    /**
+     * @Route("/delete/{id}/image", name="geekco_cms_page_delete_image")
+     */
+    public function deleteImage(Page $page, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $page->setImage(null);
+        $em->flush();
+        $referer = $request->headers->get('referer');
+        return $this->redirect($referer);
+    }
 }

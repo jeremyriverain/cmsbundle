@@ -67,6 +67,11 @@ class Page
     */
     private $createdAt;
 
+    /**
+    * @ORM\OneToOne(targetEntity="ImageResource", cascade={"persist", "remove"}, orphanRemoval=true)
+    */
+    private $image;
+
     public function __toString()
     {
         return ucfirst($this->name);
@@ -225,6 +230,23 @@ class Page
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    /*
+     * Get image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /*
+     * Set image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
         return $this;
     }
 }

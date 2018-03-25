@@ -1,0 +1,28 @@
+{% extends "@GeekcoCms/base.html.twig" %}
+
+{% import "@GeekcoCms/macros.html.twig" as macros %}
+
+{% form_theme form "@GeekcoCms/form.html.twig" %}
+
+    {% block body %}
+
+        <div class="container pb-2">
+            <h1 class=" center-align">Image de la page {{page.name}}</h1>
+
+
+            {{form_start(form, {'attr': {'novalidate':true}})}}
+
+                {{form_row(form.image)}}
+{% if page.image is not null %}
+    <div class="mt-1">
+                <img src="{{'/' ~ page.image.image|image('scale_xxs')}}" alt="" >
+                </div>
+            {% endif %}
+
+
+            {{macros.submit_button()}}
+
+            {{form_end(form)}}
+
+        </div>
+    {% endblock %}
