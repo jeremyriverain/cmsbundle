@@ -35,10 +35,6 @@
                                         <a href="#!" class="tooltipped mr-1 dropdown-button" data-position="top" data-delay="50" data-tooltip="dupliquer sur une autre page" data-alignment="left" data-beloworigin="true" data-constrainwidth="false" data-activates='dropdown_pages{{a.id}}'><i class="material-icons">content_copy</i></a>
 
                                     {% endif %}
-                                    {% if is_granted('ROLE_SUPER_ADMIN') %}
-                                        <a data-tooltip="modifiier la configuration" class="tooltipped mr-1" href="{{path('geekco_cms_module_configuration_update', {'id': a.id})}}"><i class="material-icons">settings</i></a>
-                                    {% endif %}
-                                    <!-- Dropdown Structure -->
                                     <ul id='dropdown_pages{{a.id}}' class='dropdown-content module-adder'>
                                         {% for p in pages %}
                                             {% if p.id != page.id%}
