@@ -1,4 +1,13 @@
 .ck-editor {
 max-width: 100%!important;
 overflow: hidden!important;
+    ul {
+    margin-left: 1rem;
+    padding-left: 1rem;
+    }
+    ul li {
+    list-style: initial;
+    }
+
+
 }

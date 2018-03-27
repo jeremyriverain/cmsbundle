@@ -9753,6 +9753,15 @@ See http://bgrins.github.io/spectrum/themes/ for instructions.
   overflow: hidden !important;
 }
 
+.ck-editor ul {
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+.ck-editor ul li {
+  list-style: initial;
+}
+
 .flash {
   margin: 0 auto;
   max-width: 600px;
