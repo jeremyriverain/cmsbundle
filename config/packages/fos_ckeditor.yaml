@@ -1,0 +1,22 @@
+# Read the documentation: https://symfony.com/doc/current/bundles/FOSCKEditorBundle/index.html
+
+twig:
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+
+ivory_ck_editor:
+    jquery: true
+    configs:
+        my_config:
+            toolbar: "standard"
+            language: fr
+            filebrowserBrowseRoute: elfinder
+            filebrowserBrowseRouteParameters: []
+
+    toolbars:
+        items:
+            standard.editing: ['Find', 'Replace', '-', 'SelectAll', '-', 'Scayt']
+
+            standard.paragraph: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
+            standard.tools: ['Maximize', 'ShowBlocks']
+            standard.insert: ['Image', 'Table', 'HorizontalRule', 'SpecialChar']

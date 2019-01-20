@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use Geekco\CmsBundle\Entity\TextResource;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class TextResourceType extends AbstractType
 {
@@ -36,10 +37,10 @@ class TextResourceType extends AbstractType
                             ])
                             ;
                     } else {
-                        $form->add('value', null, [
+                        $form->add('value', CKEditorType::class, [
                             'label' => $label,
                             'attr' => [
-                            'class' => 'textarea-ckeditor html materialize-textarea'
+                            'class' => ''
                             ],
                         ])
                         ;
